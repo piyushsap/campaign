@@ -12,7 +12,6 @@ function Builder() {
   let index = 1;
   var handleDrop = (e) => {
     const compType = e.dataTransfer.getData('text');
-    debugger;
     setComponents([...components, {
         id: index++,
         name: compType
