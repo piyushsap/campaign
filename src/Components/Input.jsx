@@ -7,10 +7,10 @@ function Input(props) {
             <label>{props.label}</label>
         ):null}
         <input 
-            type={props.type} 
-            value={props.val} 
-            required={props.validate} 
-            onBlur={props.handleBlur} 
+            type={props.type || 'text'} 
+            value={props.val || ''} 
+            required={props.validate || false} 
+            onBlur={props.handleBlur || null} 
             onChange={props.handleChange || null} />
     </div>
   );
