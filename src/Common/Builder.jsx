@@ -9,28 +9,38 @@ export const componentMap = {
   Input: Input,
   Row: Row
 };
-
+let index = 1;
 function Builder() {
   const [components, setComponents] = useState([]);
-  let index = 1;
   var handleDrop = (e) => {
     const compType = e.dataTransfer.getData('text');
-    setComponents([...components, {
+    const currentComponent = e.target.closest(".component-container");
+    if(currentComponent) {
+      const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
+      const newComponents = [...components.slice(0, componentIndex), 
+      {id: index++,
+        name: compType
+      },...components.slice(componentIndex)];
+      setComponents(newComponents);
+    }
+    else {
+      setComponents([...components, {
         id: index++,
         name: compType
       }]);
+    } 
   };
   return (
     <section className="builder">
         <h2>Builder</h2>
         <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => handleDrop(e)}>
-            <Text />
+            {/* <Text />
             <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
-            <Button {...{type:"submit", val:"cheking"}}/>
+            <Button {...{type:"submit", val:"cheking"}}/> */}
             {components.map(comp => {
               const CompName = componentMap[comp.name];
-              return <CompName key = {comp.id}/>
+              return <div className ="component-container"><CompName key = {comp.id}/></div>
             })}
         </div>
     </section>
