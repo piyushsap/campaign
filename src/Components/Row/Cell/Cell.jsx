@@ -12,7 +12,7 @@ function Cell() {
     return (
         <div className = "cell" onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => handleDrop(e)}>
-            { ComponentName && <ComponentName />}
+            { ComponentName ? <ComponentName /> : 'Drag Components Here'}
         </div>
     )
 } 
