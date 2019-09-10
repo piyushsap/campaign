@@ -1,13 +1,16 @@
 import React, { useState }  from 'react';
-import {Input, Button, Text} from '../Components/index'
+import {Input, Button, Text, Row} from '../Components/index'
+
+
+export const componentMap = {
+  Text: Text,
+  Image: Image,
+  Button: Button,
+  Input: Input,
+  Row: Row
+};
 
 function Builder() {
-  const componentMap = {
-    Text: Text,
-    Image: Image,
-    Button: Button,
-    Input: Input
-};
   const [components, setComponents] = useState([]);
   let index = 1;
   var handleDrop = (e) => {
