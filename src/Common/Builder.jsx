@@ -2,6 +2,32 @@ import React, { useState }  from 'react';
 import {Input, Button, Text, Row} from '../Components/index'
 
 
+function ComponentWrapper(props) {
+  let compParent = React.createRef();
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDragEnter = (e) => {
+    compParent.current.classList.add('hover');
+  };
+
+  const handleDragLeave = (e) => {
+    compParent.current.classList.remove('hover');
+  };
+
+  return (
+    <div ref={compParent} onDragOver = {(e) => handleDragOver(e)}
+    onDragEnter = {(e) => handleDragEnter(e)} 
+    onDragLeave = {(e) => handleDragLeave(e)} 
+    onDrop =  {(e) => handleDragLeave(e)} 
+    className ="component-container">
+      {props.children}
+    </div>
+  )
+};
+
+
 export const componentMap = {
   Text: Text,
   Image: Image,
@@ -12,6 +38,7 @@ export const componentMap = {
 let index = 1;
 function Builder() {
   const [components, setComponents] = useState([]);
+  
   var handleDrop = (e) => {
     const compType = e.dataTransfer.getData('text');
     const currentComponent = e.target.closest(".component-container");
@@ -40,7 +67,7 @@ function Builder() {
             <Button {...{type:"submit", val:"cheking"}}/> */}
             {components.map(comp => {
               const CompName = componentMap[comp.name];
-              return <div className ="component-container"><CompName key = {comp.id}/></div>
+              return <ComponentWrapper><CompName key = {comp.id}/></ComponentWrapper>
             })}
         </div>
     </section>
