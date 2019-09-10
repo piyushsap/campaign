@@ -14,7 +14,7 @@ function ComponentItem({type}) {
 }
 
 function Sidebar() {
-    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image'];
+    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row'];
     return (
         <section className="sidebar">
             <Header />

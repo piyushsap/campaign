@@ -3,7 +3,8 @@
 }
 .App {
   width: 100%;
-  float: left;
+  display: flex;
+  background-color: #F3F5F6;
 }
 header{
   background-color: #A62858;
@@ -14,8 +15,7 @@ header h1{
   padding: 15px;
 }
 .sidebar{
-  width: 300px;float: left;
-  background-color: #F3F5F6;
+  width: 300px;
   min-height: 100%;
 }
 .element-list{
@@ -40,5 +40,28 @@ header h1{
   display: block;
 }
 .builder{
-  
+  flex: 1;
+  background: #fff;
+  padding:20px
+}
+
+.builder-wrapper {
+  border: dotted 1px #ddd;
+  padding: 20px;
+}
+.builder-wrapper>* {
+  margin-bottom: 20px;
+}
+
+.row {
+  border: dotted 1px #ddd;
+  min-height: 50px;
+  display: flex;
+}
+
+.cell {
+  flex: 1
+}
+.cell:not(:last-child) {
+  border-right: dotted 1px #ddd;
 }
