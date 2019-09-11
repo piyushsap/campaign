@@ -50,7 +50,7 @@ header h1{
   padding: 20px;
 }
 .builder-wrapper>* {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 .row {
@@ -64,4 +64,8 @@ header h1{
 }
 .cell:not(:last-child) {
   border-right: dotted 1px #ddd;
+}
+
+.component-container.hover {
+  box-shadow: 0 0 0 5px skyblue;
 }
