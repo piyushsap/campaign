@@ -1,5 +1,6 @@
-import React, { useState }  from 'react';
-import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider} from '../Components/index'
+import React, { useState, useEffect }  from 'react';
+import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider} from '../Components/index';
+import componentService from './../services/ComponentsService';
 
 
 function ComponentWrapper(props) {
@@ -42,6 +43,16 @@ export const componentMap = {
 let index = 1;
 function Builder() {
   const [components, setComponents] = useState([]);
+  useEffect(_ => {
+    componentService.fetchComponents().then(response => {
+      setComponents(response);
+    });
+    
+  }, []);
+
+  useEffect(_ => {
+      componentService.postComponents(components);
+  }, [components.length]);
   const updateAttributes = (id, attributes) => {
     const compIndex = components.findIndex(c => c.id === id);
     if(compIndex > -1) {

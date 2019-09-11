@@ -9,3 +9,4 @@ export { default as Divider } from "./pageDivider";
 export { default as Form } from "./Form";
 export { default as Row } from "./Row/Row";
 export { default as Cell } from "./Row/Cell/Cell";
+export { default as Select } from "./Select";

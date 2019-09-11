@@ -1,17 +1,9 @@
 import React from 'react';
 import Header from './Header';
+import { Text } from '../Components';
+import Navlist from '../Components/Navlist';
+import Properties from './Properties';
 
-function ComponentItem({type}) {
-    return (
-        <li draggable onDragStart={(e) => e.dataTransfer.setData('text/plain', type)}
-        >
-            <div className="element-item">
-                <img src="" alt="name" />
-                {type}
-        </div>
-        </li>
-    )
-}
 
 function Sidebar() {
     const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row', 'Checkbox', 'RadioButton', 'Divider'];
@@ -19,41 +11,14 @@ function Sidebar() {
         <section className="sidebar">
             <Header />
             <div className="accordion">
-                <ul className="element-list">
-
-                    {componentTypes.map((type, index) => <ComponentItem key = {index} type = {type}></ComponentItem>)}
-                    {/* <li draggable onDragStart={(e) => e.dataTransfer.setData('text/plain', "text")}
-                    >
-                        <div className="element-item">
-                            <img src="" alt="name" />
-                            Text
-                    </div>
-                    </li>
-                    <li draggable>
-                        <div className="element-item">
-                            <img src="" alt="name" />
-                            Image
-                    </div>
-                    </li>
-                    <li draggable>
-                        <div className="element-item">
-                            <img src="" alt="name" />
-                            Video
-                    </div>
-                    </li>
-                    <li draggable>
-                        <div className="element-item">
-                            <img src="" alt="name" />
-                            Text
-                    </div>
-                    </li>
-                    <li draggable>
-                        <div className="element-item">
-                            <img src="" alt="name" />
-                            Text
-                    </div>
-                    </li> */}
-                </ul>
+                <div className="accordion-item elements">
+                    <Text {...{ type: 'h3', text: 'Elements' }} />
+                    <Navlist {...{ componentTypes }} />
+                </div>
+                <div className="accordion-item comp-properties">
+                    <Text {...{ type: 'h3', text: 'Properties' }} />
+                    <Properties {...{ element: 'row' }} />
+                </div>
             </div>
         </section>
     );
