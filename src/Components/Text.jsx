@@ -3,7 +3,7 @@ import React from 'react';
 function Text(props) {
   return (
     <div className="text-input " >
-        <props.type style = {props.style} contentEditable onInput ={e => props.updateAttributes(props.id, {text : e.currentTarget.innerText})}>
+        <props.type style = {props.style} contentEditable onBlur ={e => props.updateAttributes(props.id, {text : e.currentTarget.innerText})}>
             {props.text || 'test'}
         </props.type>
     </div>
