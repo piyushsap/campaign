@@ -9,6 +9,8 @@ function Input(props) {
         ):null}
         <input 
             type={props.type || 'text'} 
+            name={props.name || ''} 
+            id={props.name || ''} 
             placeholder={props.placeholder || 'Enter your Text here'} 
             required={props.validate || false} 
             onBlur={props.handleBlur || null} 
