@@ -38,7 +38,15 @@ export const componentMap = {
 let index = 1;
 function Builder() {
   const [components, setComponents] = useState([]);
-  
+  const updateAttributes = (id, attributes) => {
+    const compIndex = components.findIndex(c => c.id === id);
+    if(compIndex > -1) {
+      const comp = components[compIndex];
+      const updatedComp = {...comp};
+      updatedComp.attributes = {...updatedComp.attributes, ...attributes};
+      setComponents([...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)]);
+    }
+  }
   var handleDrop = (e) => {
     const compType = e.dataTransfer.getData('text');
     const currentComponent = e.target.closest(".component-container");
@@ -46,14 +54,16 @@ function Builder() {
       const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
       const newComponents = [...components.slice(0, componentIndex), 
       {id: index++,
-        name: compType
+        name: compType,
+        attributes: {label: "hello"}
       },...components.slice(componentIndex)];
       setComponents(newComponents);
     }
     else {
       setComponents([...components, {
         id: index++,
-        name: compType
+        name: compType,
+        attributes: {label: "hello", style: {'fontWeight': 'bold'}}
       }]);
     } 
   };
@@ -67,7 +77,7 @@ function Builder() {
             <Button {...{type:"submit", val:"cheking"}}/> */}
             {components.map(comp => {
               const CompName = componentMap[comp.name];
-              return <ComponentWrapper><CompName key = {comp.id}/></ComponentWrapper>
+              return <ComponentWrapper><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {updateAttributes}/></ComponentWrapper>
             })}
         </div>
     </section>
