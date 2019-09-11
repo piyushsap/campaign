@@ -6,7 +6,7 @@ import Properties from './Properties';
 
 
 function Sidebar() {
-    const componentTypes = ['Text', 'Button', 'Image', 'Video', 'Text', 'Image', 'Row'];
+    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row', 'Checkbox', 'RadioButton', 'Divider'];
     return (
         <section className="sidebar">
             <Header />

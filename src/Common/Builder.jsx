@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import {Input, Button, Text, Row} from '../Components/index';
+import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider} from '../Components/index';
 import componentService from './../services/ComponentsService';
 
 
@@ -34,6 +34,10 @@ export const componentMap = {
   Image: Image,
   Button: Button,
   Input: Input,
+  Video: Video,
+  Checkbox: Checkbox,
+  RadioButton: RadioButton,
+  Divider: Divider,
   Row: Row
 };
 let index = 1;
@@ -66,7 +70,7 @@ function Builder() {
       const newComponents = [...components.slice(0, componentIndex), 
       {id: index++,
         name: compType,
-        attributes: {label: "hello"}
+        attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
       },...components.slice(componentIndex)];
       setComponents(newComponents);
     }
@@ -74,7 +78,7 @@ function Builder() {
       setComponents([...components, {
         id: index++,
         name: compType,
-        attributes: {label: "hello", style: {'fontWeight': 'bold'}}
+        attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
       }]);
     } 
   };
