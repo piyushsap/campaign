@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './Header';
 import { Text } from '../Components';
 import Navlist from '../Components/Navlist';
 import Properties from './Properties';
+import componentService from './../services/ComponentsService';
 
 
 function Sidebar() {
     const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row', 'Divider'];
+    const [element, setElement] = useState('Row');
+    useEffect(_ => {
+        componentService.addComponentChangeSubscriber(data => {
+            setElement(data.type);
+        })
+    }, []);
     return (
         <section className="sidebar">
             <Header />
@@ -17,7 +24,7 @@ function Sidebar() {
                 </div>
                 <div className="accordion-item comp-properties">
                     <Text {...{ type: 'h3', text: 'Properties' }} />
-                    <Properties {...{ element: 'row' }} />
+                    <Properties {...{ element }} />
                 </div>
             </div>
         </section>

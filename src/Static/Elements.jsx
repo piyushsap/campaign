@@ -1,5 +1,5 @@
 const element = {
-    text:[{
+    Text:[{
         text:{
             label: 'your text',
             inputType: 'text',
@@ -22,7 +22,7 @@ const element = {
             inputType: 'text',
         }
     }],
-    image:[{
+    Image:[{
         image:{
             label: 'Upload Image',
             inputType: 'file',
@@ -33,7 +33,7 @@ const element = {
             options:['Background','Foreground']
         }
     }],
-    pageDivider:[{
+    PageDivider:[{
         color:{
             label: 'Bar Color',
             inputType: 'color',
@@ -44,14 +44,14 @@ const element = {
             options:['Background','Foreground']
         }
     }],
-    row:[{
+    Row:[{
         columns:{
             label: 'Choose Columns',
             inputType: 'select',
             options:['1','2','3','4']
         }
     }],
-    cell:[{
+    Cell:[{
         columns:{
             label: 'column width in %',
             inputType: 'text',
