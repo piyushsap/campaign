@@ -4,6 +4,9 @@ import text from '../../Assets/Images/text.svg';
 import video from '../../Assets/Images/video.svg';
 import grid from '../../Assets/Images/grid.svg';
 import button from '../../Assets/Images/butotn.svg';
+import input from '../../Assets/Images/input.svg';
+import divider from '../../Assets/Images/divider.svg';
+
 
 
 const imageMap = {
@@ -11,7 +14,9 @@ const imageMap = {
     Text: text,
     Video: video,
     Row:grid,
-    Button:button
+    Button:button,
+    Input:input,
+    Divider:divider
 }
 function Navitem(props) {
     return (

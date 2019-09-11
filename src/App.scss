@@ -55,12 +55,23 @@ header h1 {
 .builder {
   flex: 1;
   background: #fff;
-  padding: 20px
-}
-
-.builder-wrapper {
-  border: dotted 1px #ddd;
   padding: 20px;
+  h2 .form-button{
+    float: right;
+  }
+  .publish{
+    background-color: #A62858;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    float: right;
+    border: 0;
+  }
+  &-wrapper {
+    border: dotted 1px #ddd;
+    padding: 20px;
+  }
 }
 
 .builder-wrapper>* {

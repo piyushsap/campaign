@@ -84,7 +84,7 @@ function Builder() {
   };
   return (
     <section className="builder">
-        <h2>Builder</h2>
+        <h2>Builder <Button {...{type:"button", val:"Publish",class:'publish'}}/></h2>
         <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => handleDrop(e)}>
             {/* <Text />
