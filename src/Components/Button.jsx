@@ -6,7 +6,7 @@ function Button(props) {
             <button
                 type={props.type}
                 onClick={props.handleClick || null}>
-                {props.val}</button>
+                {props.val || 'Submit' }</button>
         </div>
     );
 }

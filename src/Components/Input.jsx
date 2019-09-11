@@ -8,7 +8,7 @@ function Input(props) {
         ):null}
         <input 
             type={props.type || 'text'} 
-            value={props.val || ''} 
+            placeholder={props.placeholder || 'Enter your Text here'} 
             required={props.validate || false} 
             onBlur={props.handleBlur || null} 
             onChange={props.handleChange || null} />
