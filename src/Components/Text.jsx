@@ -2,7 +2,7 @@ import React from 'react';
 
 function Text(props) {
   return (
-    <div className="text-input " contentEditable>
+    <div className="text-input ">
         <props.type>
             {props.text || 'test'}
         </props.type>
