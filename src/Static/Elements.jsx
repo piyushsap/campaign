@@ -1,5 +1,9 @@
 const element = {
     text:[{
+        text:{
+            label: 'your text',
+            inputType: 'text',
+        },
         type:{
             options: ['h1','h2','h3','h4','h5','h6','p','label','span'],
             label: 'Heading',

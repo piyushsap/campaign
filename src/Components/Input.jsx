@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Input(props) {
+
   return (
     <div className="form-input">
         { props.label ?(
@@ -13,7 +14,7 @@ function Input(props) {
             placeholder={props.placeholder || 'Enter your Text here'} 
             required={props.validate || false} 
             onBlur={props.handleBlur || null} 
-            onChange={props.handleChange || null} />
+            onChange={e => props.updateAttributes(props.id, {val : e.currentTarget.value})} />
     </div>
   );
 }
