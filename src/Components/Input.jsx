@@ -1,4 +1,5 @@
 import React from 'react';
+import componentService from './../services/ComponentsService';
 
 function Input(props) {
 
@@ -14,7 +15,7 @@ function Input(props) {
             placeholder={props.placeholder || 'Enter your Text here'} 
             required={props.validate || false} 
             onBlur={props.handleBlur || null} 
-            onChange={e => props.updateAttributes && props.updateAttributes(props.id, {val : e.currentTarget.value})} />
+            onChange={e => componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})} />
     </div>
   );
 }
