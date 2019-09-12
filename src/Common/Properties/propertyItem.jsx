@@ -15,12 +15,11 @@ function Propertyitem(props) {
       if(styleAttrs[attrName]) {
         value = props.component.attributes.style[attrName];
       }
+      else if(attrName === 'columns') {
+        value = props.component.attributes.cells && props.component.attributes.cells.length + '';
+      }
       else {
         value = props.component.attributes[attrName];
-      }
-      if(props.element.key === 'text') {
-        debugger;
-
       }
     return (
         <div className="properties-item">
