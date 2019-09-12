@@ -79,7 +79,7 @@ class Builder extends Component {
   }
 
   postRequest = () => {
-    componentService.postComponents({[this.campaignID]: this.state.components});
+    componentService.postComponents(this.state.components,this.campaignID);
 
   }
 
@@ -159,7 +159,7 @@ class Builder extends Component {
       <Fragment>
         <Sidebar/>
         <section className="builder">
-            <h2>Builder <NavLink to='/publish'><Button {...{type:"button", val:"Publish",class:'publish'}}/></NavLink></h2>
+            <h2>Builder <NavLink to={'/publish/'+this.campaignID}><Button {...{type:"button", val:"Publish",class:'publish'}}/></NavLink></h2>
             <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => this.handleDrop(e)}>
                 {/* <Text />
