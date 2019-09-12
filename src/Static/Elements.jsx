@@ -97,6 +97,22 @@ const element = {
             inputType: 'text',
         }
     }],
+    Select:[{
+        value:{
+            label: 'Label',
+            inputType: 'text',
+        },
+        options:{
+            label: 'Options',
+            inputType: 'text',
+        }
+    }],
+    Textarea:[{
+        label:{
+            label: 'Label',
+            inputType: 'text',
+        }
+    }],
     Form:[{
         formAction:{
             label: 'URL',

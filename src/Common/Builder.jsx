@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider, Texteditor, Formcomp } from '../Components/index';
+import { Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider, Texteditor, Formcomp,Select,Textarea } from '../Components/index';
 import componentService from './../services/ComponentsService';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
@@ -17,7 +17,9 @@ export const componentMap = {
   RadioButton: RadioButton,
   Divider: Divider,
   Form: Formcomp,
-  Row: Row
+  Row: Row,
+  Select: Select,
+  Textarea: Textarea,
 };
 let selectedId = 0;
 let index = 1;

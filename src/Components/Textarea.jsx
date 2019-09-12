@@ -3,7 +3,12 @@ import React from 'react';
 function Textarea(props) {
     
     return (
-        <textarea onChange = {props.onChange} placeholder={props.placeholder} name={props.name} id={props.name} className={props.rootClass}/>
+        <div className="form-input">
+            { props.label ?(
+                <label for= {props.name} >{props.label || 'Browse'}</label>
+            ):null}
+            <textarea onChange = {props.onChange} placeholder={props.placeholder} name={props.name} id={props.name} className={'form-control '+props.rootClass}>{props.val}</textarea>
+        </div>
     );
 }
 

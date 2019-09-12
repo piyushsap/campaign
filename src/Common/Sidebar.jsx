@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Header from './Header';
-import { Text } from '../Components';
+import { Text, Textarea } from '../Components';
 import Navlist from '../Components/Navlist';
-import Properties from './Properties';
-import componentService from './../services/ComponentsService';
 
 
 function Sidebar() {
-    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row', 'Divider', 'Form'];
+    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Row', 'Divider', 'Form','Select','Textarea'];
     return (
         <section className="sidebar">
             <Header />
