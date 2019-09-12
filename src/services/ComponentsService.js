@@ -2,6 +2,7 @@ class ComponentService {
     constructor(baseURL) {
         this.baseURL = baseURL;
         this.componentSubscribers = [];
+        this.componentEditSubscribers = [];
     }
     async fetchComponents() {
         // const response = await fetch(baseURL + 'components.json');
@@ -21,6 +22,15 @@ class ComponentService {
 
     addComponentChangeSubscriber(fn) {
         this.componentSubscribers.push(fn);
+    }
+
+    addComponentEditSubscriber(fn) {
+        this.componentEditSubscribers.push(fn);
+    }
+
+    notifyComponentEdit(attributes) {
+        this.componentEditSubscribers.forEach(fn => fn(attributes));
+
     }
 
 
