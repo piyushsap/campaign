@@ -52,10 +52,6 @@ function Image(props) {
 
 }
 
-Image.defaultProps = {
-    backgroundImage: 'true',
-  
-  };
 
 
 
