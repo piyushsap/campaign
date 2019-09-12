@@ -92,7 +92,7 @@ class Builder extends Component {
     const newComponent = {
       id,
       name: compType,
-      attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
+      attributes: {label: "hello"}
     };
     if(currentComponent) {
       const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
