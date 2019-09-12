@@ -9,7 +9,11 @@ function Image(props) {
     const divStyle = {
         backgroundImage: 'url(' + imageSrc || '' + ')',
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        width: '100%',
+        height: '200px',
+        position: 'absolute',
+        zIndex: '-1'
     };
 
     const selectfile = (event) => {
@@ -47,6 +51,11 @@ function Image(props) {
 
 
 }
+
+Image.defaultProps = {
+    backgroundImage: 'true',
+  
+  };
 
 
 
