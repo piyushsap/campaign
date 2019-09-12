@@ -17,7 +17,6 @@ class Dashboard extends Component {
             this.setState({
                 campaigns: response
             });
-            console.log(this.state.campaigns)
         });
     };
     render() {
@@ -38,11 +37,12 @@ class Dashboard extends Component {
                     </h2>
                 </header>
                 <section className="dashboard-wrapper">
+                    <h1 className="dashboard-heading">Saved Campaigns</h1>
+
                     <section className="campaigns-wrapper">
                     {
                         Object.keys(this.state.campaigns).map(campaign => {
                             let campaigns = this.state.campaigns[campaign];
-                                console.log(campaigns,campaign);
                             return <section className="campaigns">
                             <div className="campaigns-image">
                                 <img src={image} alt="campaign 1" className="default" />
