@@ -1,5 +1,5 @@
 import React, { Component, Fragment }  from 'react';
-import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider} from '../Components/index';
+import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider, Texteditor} from '../Components/index';
 import componentService from './../services/ComponentsService';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
@@ -148,6 +148,7 @@ class Builder extends Component {
                 {/* <Text />
                 <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
                 <Button {...{type:"submit", val:"cheking"}}/> */}
+                <Texteditor />
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
                   return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest}/></ComponentWrapper>

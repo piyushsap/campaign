@@ -11,3 +11,4 @@ export { default as Row } from "./Row/Row";
 export { default as Cell } from "./Row/Cell/Cell";
 export { default as Select } from "./Select";
 export { default as Textarea } from "./Textarea";
+export { default as Texteditor } from "./Texteditor";
