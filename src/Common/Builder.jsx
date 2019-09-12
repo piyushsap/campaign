@@ -134,6 +134,10 @@ class Builder extends Component {
     //componentService.notifyComponentChange({type: compType});
   }
 
+  onComponentChange = (e, props) => {
+    this.updateAttributes({'imageSrc': e.target.result});
+  }
+
   onPropertyChange = (e, props) => {
     debugger;
     const styleAttrs = {
@@ -170,7 +174,7 @@ class Builder extends Component {
                 <Button {...{type:"submit", val:"cheking"}}/> */}
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
-                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}} key = {comp.id}  ><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
+                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName name = {comp.compType} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
                 })}
             </div>
         </section>

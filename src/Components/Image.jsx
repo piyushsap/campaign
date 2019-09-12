@@ -20,6 +20,7 @@ function Image(props) {
             reader.onload = function (e) {
 
                 setImage(e.target.result);
+                props.onChange(e, props);
             };
 
             reader.readAsDataURL(event.target.files[0]);
