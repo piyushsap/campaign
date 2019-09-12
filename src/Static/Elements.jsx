@@ -13,7 +13,7 @@ const element = {
             label: 'Text Color',
             inputType: 'color',
         },
-        'line-height':{
+        'lineHeight':{
             label:'Line height',
             inputType: 'text',
         },

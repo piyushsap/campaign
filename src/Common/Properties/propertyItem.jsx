@@ -5,10 +5,10 @@ import componentService from './../../services/ComponentsService';
 function Propertyitem(props) {
     const styleAttrs = {
         lineHeight: 'lineHeight',
-        textColor: 'color'
+        color: 'color'
       };
     const onChange = function(e, props) {
-        if(props.name === 'lineHeight' ||props.name === 'textColor' ) {
+        if(props.name === 'lineHeight' ||props.name === 'color' ) {
           componentService.notifyComponentEdit({style: {[styleAttrs[props.name]]: e.currentTarget.value}});
         }
         else {

@@ -17,10 +17,10 @@ function SidebarRight() {
         <section className="sidebar sidebar-right">
             <Header />
             <div className="accordion">
-                <div className="accordion-item comp-properties">
+                {/* <div className="accordion-item comp-properties">
                     <Text {...{ type: 'h3', text: 'Properties' }} />
                     <Properties {...{ element: 'text' }} />
-                </div>
+                </div> */}
                 <div className="accordion-item comp-properties">
                     <Text {...{ type: 'h3', text: 'Properties' }} />
                     <Properties {...{ element }} />
