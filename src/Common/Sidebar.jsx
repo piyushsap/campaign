@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './Header';
 import { Text } from '../Components';
 import Navlist from '../Components/Navlist';
 import Properties from './Properties';
+import componentService from './../services/ComponentsService';
 
 
 function Sidebar() {
