@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import './image.scss';
-import imageIcon from '../Assets/Images/image-icon.svg';
+import imageIcon from '../Assets/Images/image.svg';
+import { Input } from '../Components/';
 
 function Image(props) {
 
     const [imageSrc, setImage] = useState([]);
     const divStyle = {
-        backgroundImage: 'url(' + props.backgroundImage || '' + ')',
+        backgroundImage: 'url(' + imageSrc || '' + ')',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
     };
 
     const selectfile = (event) => {
+        console.log(event);
         if (event.target.files && event.target.files[0]) {
             var reader = new FileReader();
 
@@ -26,9 +28,9 @@ function Image(props) {
     return (
         <React.Fragment>
             <div className="image-placeholder">
-                <img alt="img-icon" src={imageIcon} width="34px" />
+                <img alt="img-icon" src={imageIcon} width="30px" />
                 <span className="placeholder-txt">Add your image</span>
-                <input className="btn btn-default" type="file" onChange={selectfile} accept="image/gif, image/jpeg, image/png" />
+                < Input {...{label: 'Browse', class:'uploadBtn',name:'imageUpload',id:'imageupload',type: 'file',imageValid:'image/gif, image/jpeg, image/png'}}  />
             </div>
             <div className="banner-image">
                 {props.backgroundImage ? (
