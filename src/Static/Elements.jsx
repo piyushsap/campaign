@@ -70,6 +70,11 @@ const element = {
         placeholder:{
             label: 'Enter Placeholder',
             inputType: 'text',
+        },
+        type:{
+            label: 'Input Type',
+            inputType: 'select',
+            options:['text','checkbox']
         }
     }],
     Video:[{
@@ -89,6 +94,28 @@ const element = {
     Button:[{
         val:{
             label: 'Label',
+            inputType: 'text',
+        }
+    }],
+    Select:[{
+        value:{
+            label: 'Label',
+            inputType: 'text',
+        },
+        options:{
+            label: 'Options',
+            inputType: 'text',
+        }
+    }],
+    Textarea:[{
+        label:{
+            label: 'Label',
+            inputType: 'text',
+        }
+    }],
+    Form:[{
+        formAction:{
+            label: 'URL',
             inputType: 'text',
         }
     }]
