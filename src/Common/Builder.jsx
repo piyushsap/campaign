@@ -38,7 +38,8 @@ class Builder extends Component {
               return {
                 id: index,
                 name: 'Cell',
-                attributes: {style: {}}
+                attributes: {style: {}},
+                components: []
               }
           });
         }
@@ -52,14 +53,21 @@ class Builder extends Component {
   }
 
   componentDidMount() {
+    this.campaignID = this.props.match.params.id;
     //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
-    componentService.fetchComponents().then(response => {
+    debugger;
+    componentService.fetchComponents(this.props.match.params.id).then(response => {
       this.setState({components: response});
     });
   }
 
   componentDidUpdate() {
-    componentService.postComponents(this.state.components);
+    this.postRequest();
+  }
+
+  postRequest = () => {
+    componentService.postComponents({[this.campaignID]: this.state.components});
+
   }
 
   handleDrop = (e) => {
@@ -104,7 +112,6 @@ class Builder extends Component {
   }
 
   onPropertyChange = (e, props) => {
-    debugger;
     const styleAttrs = {
       lineHeight: 'lineHeight',
       color: 'color'
@@ -126,6 +133,10 @@ class Builder extends Component {
     }
   }
 
+  setSelectedComponent = (comp) => {
+    this.setState({'selectedComponent': comp});
+  }
+
   render() {
     return (
       <Fragment>
@@ -139,7 +150,7 @@ class Builder extends Component {
                 <Button {...{type:"submit", val:"cheking"}}/> */}
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
-                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName name = {comp.compType} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
+                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest}/></ComponentWrapper>
                 })}
             </div>
         </section>

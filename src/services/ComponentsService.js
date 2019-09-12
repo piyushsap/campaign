@@ -4,11 +4,12 @@ class ComponentService {
         this.componentSubscribers = [];
         this.componentEditSubscribers = [];
     }
-    async fetchComponents() {
-        const response = await fetch(baseURL + 'components1.json');
+    async fetchComponents(query) {
+        query = query || '';
+        const response = await fetch(baseURL + 'components1' + (query ? '/' + query : '') + '.json');
         const json = await response.json();
         return json || [];
-        //return [];
+        return [];
     }
 
     async postComponents(components) {

@@ -13,13 +13,13 @@ function ComponentWrapper(props) {
       compParent.current.classList.remove('hover');
     };
   
-    const handleClick = () => {
+    const handleClick = (e) => {
       document.querySelectorAll('.component-container').forEach(ele => {
         ele.classList.remove('select');
       });
       compParent.current.classList.add('select');
   
-      props.clickHandler();
+      props.clickHandler(e);
   
     };
   
