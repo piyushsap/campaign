@@ -24,10 +24,18 @@ class Cell extends Component {
         this.props.setSelectedComponent(comp);
     };
 
+    deleteComponent = (comp) => {
+        const components = this.props.comp.components;
+        const indexOfComp = components.indexOf(comp);
+        debugger;
+        components.splice(indexOfComp, 1);
+        this.forceUpdate();
+    };
+
     render() {
         const Components = this.props.comp.components.map((child, index) => {
             const CompName = componentMap[child.name];
-            return <ComponentWrapper key = {child.id} clickHandler = {e => {this.clickHandler(e, child)}}><CompName {...child.attributes}/></ComponentWrapper>
+            return <ComponentWrapper key = {child.id} clickHandler = {e => {this.clickHandler(e, child)}} handleDelete = {_ => this.deleteComponent(child)}><CompName {...child.attributes}/></ComponentWrapper>
         });
         return (
             <div className = "cell" onDragOver={(e) => e.preventDefault()}
