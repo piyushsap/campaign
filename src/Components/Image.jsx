@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './image.scss';
+import imageIcon from '../Assets/Images/image-icon.svg';
 
 function Image(props) {
 
@@ -24,7 +26,7 @@ function Image(props) {
     return (
         <React.Fragment>
             <div className="image-placeholder">
-                <img alt="Image" src="" />
+                <img alt="img-icon" src={imageIcon} width="34px" />
                 <span className="placeholder-txt">Add your image</span>
                 <input className="btn btn-default" type="file" onChange={selectfile} accept="image/gif, image/jpeg, image/png" />
             </div>
