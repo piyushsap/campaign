@@ -62,14 +62,27 @@ class Builder extends Component {
   // useEffect(_ => {
   //     componentService.postComponents(components);
   // }, [components.length]);
-  updateAttributes = (attributes) => {
+  updateAttributes = (attributes, customObj) => {
       const components = this.state.components;
       const comp = this.state.selectedComponent;
       const compIndex = components.findIndex(c => c.id === comp.id);
       const updatedComp = {...comp};
-      const updatedStyles = {...updatedComp.attributes.style, ...attributes.style};
-      updatedComp.attributes = {...updatedComp.attributes, updatedStyles};
-      updatedComp.attributes = {...updatedComp.attributes, ...attributes};
+      if(customObj) {
+        if(customObj.type === 'Row') {
+          updatedComp.attributes.cells = [...Array(customObj.value)].map((item, index) => {
+              return {
+                id: index,
+                name: 'Cell',
+                attributes: {style: {}}
+              }
+          });
+        }
+      }
+      else {
+        const updatedStyles = {...updatedComp.attributes.style, ...attributes.style};
+        updatedComp.attributes = {...updatedComp.attributes, updatedStyles};
+        updatedComp.attributes = {...updatedComp.attributes, ...attributes};
+      }
       this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)], selectedComponent: updatedComp});
   }
 
@@ -90,23 +103,27 @@ class Builder extends Component {
     const currentComponent = e.target.closest(".component-container");
     const id = new Date().getTime();
     selectedId = id;
+    const newComponent = {
+      id,
+      name: compType,
+      attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
+    };
+    // if(compType === 'Row') {
+    //   newComponent.attributes.cells = [{
+    //     'id': 0,
+    //     name: 'Cell',
+    //     attributes: {style: {}}
+    //   }];
+    // }
     if(currentComponent) {
       const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
       const newComponents = [...components.slice(0, componentIndex),
-      {
-        id,
-        name: compType,
-        attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
-      },...components.slice(componentIndex)];
+      newComponent,...components.slice(componentIndex)];
       this.setState({components: newComponents});
       //setComponents(newComponents);
     }
     else {
-      this.setState({components:[...components, {
-        id,
-        name: compType,
-        attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
-      }]});
+      this.setState({components:[...components, newComponent]});
     } 
     componentService.notifyComponentChange({type: compType});
   };
@@ -118,6 +135,7 @@ class Builder extends Component {
   }
 
   onPropertyChange = (e, props) => {
+    debugger;
     const styleAttrs = {
       lineHeight: 'lineHeight',
       color: 'color'
@@ -125,6 +143,9 @@ class Builder extends Component {
     const propName = props.element.key;
     if(propName === 'lineHeight' || propName === 'color' ) {
       this.updateAttributes({style: {[styleAttrs[propName]]: e.currentTarget.value}});
+    }
+    else if(propName === 'columns') {
+      this.updateAttributes(null, {type: 'Row', value: parseInt(e.currentTarget.value)});
     }
     else {
       this.updateAttributes({[propName]: e.currentTarget.value});
