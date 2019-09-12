@@ -71,6 +71,7 @@ class Builder extends Component {
     //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
     componentService.fetchComponents(this.props.match.params.id).then(response => {
       this.setState({components: response});
+      console.log(this.state.components)
     });
   }
 
@@ -79,6 +80,7 @@ class Builder extends Component {
   }
 
   postRequest = () => {
+    console.log(1111);
     componentService.postComponents(this.state.components,this.campaignID);
 
   }
@@ -159,8 +161,11 @@ class Builder extends Component {
       <Fragment>
         <Sidebar/>
         <section className="builder">
-            <h2>Builder <NavLink to={'/publish/'+this.campaignID}><Button {...{type:"button", val:"Publish",class:'publish'}}/></NavLink></h2>
-            <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
+            <h2>Builder 
+              <Button {...{type:"button", val:"Publish",class:'publish',handleClick:this.postRequest}}/>
+              <NavLink to={'/publish/'+this.campaignID}><Button {...{type:"button", val:"Preview",class:'preview'}}/></NavLink>
+            </h2>
+            <pre className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => this.handleDrop(e)}>
                 {/* <Text />
                 <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
@@ -170,7 +175,7 @@ class Builder extends Component {
                   const CompName = componentMap[comp.name];
                   return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest} setSelectedComponent = {this.setSelectedComponent} /></ComponentWrapper>
                 })}
-            </div>
+            </pre>
         </section>
         <SidebarRight onPropertyChange = {this.onPropertyChange} component = {this.state.selectedComponent}/>
       </Fragment>

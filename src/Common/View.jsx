@@ -32,7 +32,7 @@ class View extends Component {
                 <header className="published-header">
                     <h2>Campaign builder</h2>
                     <NavLink to={'/create-campaign/' + this.campaignID}>
-                        <Button {...{ type: "button", val: "Go Back", class: 'btn-primary' }} />
+                        <Button {...{ type: "button", val: "Go Back", class: 'preview' }} />
                     </NavLink>
                 </header>
                 <section className="published-wrapper">

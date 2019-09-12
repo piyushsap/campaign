@@ -1,8 +1,6 @@
-import React, { useState, useEffect} from 'react';
-import Header from './Header';
+import React from 'react';
 import { Text } from '../Components';
 import Properties from './Properties';
-import componentService from './../services/ComponentsService';
 
 
 function SidebarRight(props) {
@@ -15,7 +13,6 @@ function SidebarRight(props) {
     // }, []);
     return (
         <section className="sidebar sidebar-right">
-            <Header />
             <div className="accordion">
                 {/* <div className="accordion-item comp-properties">
                     <Text {...{ type: 'h3', text: 'Properties' }} />
