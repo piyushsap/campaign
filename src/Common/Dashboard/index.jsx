@@ -7,6 +7,7 @@ import view from '../../Assets/Images/view.svg';
 import image from '../../Assets/Images/image.svg';
 import './dashboard.scss';
 import { Button } from '../../Components/';
+import { NavLink } from 'react-router-dom';
 
 class Dashboard extends Component {
     state = {
@@ -50,8 +51,8 @@ class Dashboard extends Component {
                             <div className="campaigns-footer">
                                 <h3>{campaigns.name}</h3>
                                 <div className="campaigns-actions">
-                                    <a href="#"><img src={edit} alt="edit" /></a>
-                                    <a href="#"><img src={view} alt="View" /></a>
+                                    <NavLink to={'/create-campaign/'+campaign}><img src={edit} alt="edit" /></NavLink>                                    
+                                    <NavLink to={'/publish/'+campaign}><img src={view} alt="View" /></NavLink>
                                     <a href="#"><img src={mail} alt="Responses" /></a>
                                     <a href="#"><img src={settings} alt="Settings" /></a>
                                 </div>
