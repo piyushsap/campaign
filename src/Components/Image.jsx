@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './image.scss';
 import imageIcon from '../Assets/Images/image.svg';
 import { Input } from '../Components/';
@@ -6,18 +6,23 @@ import { Input } from '../Components/';
 function Image(props) {
 
     const [imageSrc, setImage] = useState('');
-    const divStyle = {
+    const [imageDimension, setImageDimension] = useState({});
+
+    const backgroundStyle = {
         backgroundImage: 'url(' + props.imageSrc || imageSrc || '' + ')',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         width: '100%',
-        height: '200px',
-        position: 'absolute',
-        zIndex: '-1'
+        height: '100%'
     };
 
+    const divStyle = {
+        width: imageDimension.width,
+        height: imageDimension.height,
+        position: 'absolute'
+    }
+
     const selectfile = (event) => {
-        console.log(event);
         if (event.target.files && event.target.files[0]) {
             var reader = new FileReader();
 
@@ -28,8 +33,20 @@ function Image(props) {
             };
 
             reader.readAsDataURL(event.target.files[0]);
-        }
+        };
+        
     };
+
+    const getDimension = (event) => {
+        let imageDim = {
+            width: event.target.width,
+            height: event.target.height
+        }
+        debugger;
+        setImageDimension(imageDim);
+        console.log(imageDimension);
+    };
+
     const imagePlaceHolder = (
         <div className="image-placeholder">
             <img alt="img-icon" src={imageIcon} width="30px" />
@@ -40,15 +57,20 @@ function Image(props) {
     // if(props.imageSrc) {
     //     setImage(props.imageSrc);
     // }
+    
     return (
         <React.Fragment>
             { !props.imageSrc && !imageSrc && imagePlaceHolder}
-            <div className="banner-image">
+            <div className="banner-image" >
                 {props.imageType === "Background" ? (
-                    <div className="background-image" style={divStyle} ></div>
+                    <React.Fragment>
+                    <div className="banner-image" style={divStyle}>
+                        <div className="background-image" style={backgroundStyle} ></div>
+                    </div>
+                    </React.Fragment>
                 ) :
 
-                        <img alt="Image" src={props.imageSrc || imageSrc} />
+                        <img alt="Image" src={props.imageSrc || imageSrc} onLoad={getDimension} />
 
                 }
 

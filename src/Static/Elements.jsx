@@ -62,5 +62,29 @@ const element = {
             inputType: 'text',
         }
     }],
+    Input:[{
+        label:{
+            label: 'Input Label',
+            inputType: 'text',
+        },
+        placeholder:{
+            label: 'Enter Placeholder',
+            inputType: 'text',
+        }
+    }],
+    Video:[{
+        width:{
+            label: 'Width',
+            inputType: 'text',
+        },
+        height:{
+            label: 'height',
+            inputType: 'text',
+        },
+        videoUrl: {
+            label: 'Video URL',
+            inputType: 'text',
+        }
+    }]
 }
 export default element;
