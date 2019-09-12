@@ -5,6 +5,9 @@ import Propertyitem from './propertyItem';
 
 
 function Properties(props) {
+    if(!element[props.element]) {
+        return null;
+    }
     let elems = element[props.element][0];
     return (
         <section className="properties">

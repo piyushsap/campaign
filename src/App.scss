@@ -101,6 +101,10 @@ header h1 {
   box-shadow: 0 0 0 5px skyblue;
 }
 
+.component-container.hover, .component-container.select  {
+  box-shadow: 0 0 0 5px skyblue;
+}
+
 .accordion {
   &-item {
     h3 {

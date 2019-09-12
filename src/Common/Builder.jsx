@@ -20,12 +20,23 @@ function ComponentWrapper(props) {
     compParent.current.classList.remove('hover');
   };
 
+  const handleClick = () => {
+    document.querySelectorAll('.component-container').forEach(ele => {
+      ele.classList.remove('select');
+    });
+    compParent.current.classList.add('select');
+    debugger;
+
+    props.clickHandler();
+
+  };
+
   return (
-    <div ref={compParent} onDragOver={(e) => handleDragOver(e)}
-      onDragEnter={(e) => handleDragEnter(e)}
-      onDragLeave={(e) => handleDragLeave(e)}
-      onDrop={(e) => handleDragLeave(e)}
-      className="component-container">
+    <div ref={compParent} onDragOver = {(e) => handleDragOver(e)} onClick = {handleClick}
+    onDragEnter = {(e) => handleDragEnter(e)} 
+    onDragLeave = {(e) => handleDragLeave(e)} 
+    onDrop =  {(e) => handleDragLeave(e)} 
+    className ="component-container">
       {props.children}
     </div>
   )
@@ -102,6 +113,11 @@ class Builder extends Component {
     componentService.notifyComponentChange({type: compType});
   };
 
+  onComponentClick = (id, compType) => {
+    selectedId = id;
+    componentService.notifyComponentChange({type: compType});
+  }
+
   render() {
     return (
       <Fragment>
@@ -115,7 +131,7 @@ class Builder extends Component {
                 <Button {...{type:"submit", val:"cheking"}}/> */}
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
-                  return <ComponentWrapper><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
+                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp.id, comp.name)}} key = {comp.id}  ><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
                 })}
             </div>
         </section>

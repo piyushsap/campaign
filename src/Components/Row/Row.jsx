@@ -10,7 +10,7 @@ function Row(props) {
 } 
 
 Row.defaultProps= {
-    cells: 2
+    cells: 1
 };
 
 export default Row;
