@@ -165,7 +165,7 @@ class Builder extends Component {
               <Button {...{type:"button", val:"Publish",class:'publish',handleClick:this.postRequest}}/>
               <NavLink to={'/publish/'+this.campaignID}><Button {...{type:"button", val:"Preview",class:'preview'}}/></NavLink>
             </h2>
-            <pre className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
+            <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => this.handleDrop(e)}>
                 {/* <Text />
                 <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
@@ -175,7 +175,7 @@ class Builder extends Component {
                   const CompName = componentMap[comp.name];
                   return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest} setSelectedComponent = {this.setSelectedComponent} /></ComponentWrapper>
                 })}
-            </pre>
+            </div>
         </section>
         <SidebarRight onPropertyChange = {this.onPropertyChange} component = {this.state.selectedComponent}/>
       </Fragment>
