@@ -70,7 +70,7 @@ class Builder extends Component {
       const updatedStyles = {...updatedComp.attributes.style, ...attributes.style};
       updatedComp.attributes = {...updatedComp.attributes, updatedStyles};
       updatedComp.attributes = {...updatedComp.attributes, ...attributes};
-      this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)]});
+      this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)], selectedComponent: updatedComp});
   }
 
   componentDidMount() {
