@@ -6,6 +6,7 @@ import grid from '../../Assets/Images/grid.svg';
 import button from '../../Assets/Images/butotn.svg';
 import input from '../../Assets/Images/input.svg';
 import divider from '../../Assets/Images/divider.svg';
+import form from '../../Assets/Images/form.svg';
 
 
 
@@ -16,7 +17,8 @@ const imageMap = {
     Row:grid,
     Button:button,
     Input:input,
-    Divider:divider
+    Divider:divider,
+    Form: form
 }
 function Navitem(props) {
     return (
