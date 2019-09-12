@@ -5,14 +5,17 @@ function Cell() {
     const handleDrop = (e) => {
         e.stopPropagation();
         const compType = e.dataTransfer.getData('text');
-        setChild(compType);
+        setChildren([...children,compType]);
     };
-    const [child, setChild] = useState(null);
-    const ComponentName = child && componentMap[child]
+    const [children, setChildren] = useState([]);
+    const Components = children.map(child => {
+        const CompName = componentMap[child];
+        return <CompName onClick = {e => {console.log("hi");e.preventDefault()}}/>
+    });
     return (
         <div className = "cell" onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => handleDrop(e)}>
-            { ComponentName ? <ComponentName /> : 'Drag Components Here'}
+            { Components.length ? Components  : 'Drag Components Here'}
         </div>
     )
 } 

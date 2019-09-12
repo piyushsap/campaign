@@ -6,7 +6,7 @@ function Input(props) {
         { props.label || props.type==='file' ?(
             <label for= {props.name} >{props.label || 'Browse'}</label>
         ):null}
-        <input 
+        <input className="form-control"
             type={props.type || 'text'} 
             name={props.name || ''} 
             id={props.name || ''}

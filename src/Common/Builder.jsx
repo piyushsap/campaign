@@ -4,42 +4,7 @@ import componentService from './../services/ComponentsService';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import SidebarRight from './SidebarRight';
-
-
-function ComponentWrapper(props) {
-  let compParent = React.createRef();
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const handleDragEnter = (e) => {
-    compParent.current.classList.add('hover');
-  };
-
-  const handleDragLeave = (e) => {
-    compParent.current.classList.remove('hover');
-  };
-
-  const handleClick = () => {
-    document.querySelectorAll('.component-container').forEach(ele => {
-      ele.classList.remove('select');
-    });
-    compParent.current.classList.add('select');
-
-    props.clickHandler();
-
-  };
-
-  return (
-    <div ref={compParent} onDragOver = {(e) => handleDragOver(e)} onClick = {handleClick}
-    onDragEnter = {(e) => handleDragEnter(e)} 
-    onDragLeave = {(e) => handleDragLeave(e)} 
-    onDrop =  {(e) => handleDragLeave(e)} 
-    className ="component-container">
-      {props.children}
-    </div>
-  )
-};
+import ComponentWrapper from './ComponentWrapper';
 
 
 export const componentMap = {
@@ -128,6 +93,10 @@ class Builder extends Component {
     //componentService.notifyComponentChange({type: compType});
   }
 
+  onComponentChange = (e, props) => {
+    this.updateAttributes({'imageSrc': e.target.result});
+  }
+
   onPropertyChange = (e, props) => {
     debugger;
     const styleAttrs = {
@@ -140,6 +109,9 @@ class Builder extends Component {
     }
     else if(propName === 'columns') {
       this.updateAttributes(null, {type: 'Row', value: parseInt(e.currentTarget.value)});
+    }
+    else if(propName === 'image') {
+      this.updateAttributes({'imageSrc': e.target.result});
     }
     else {
       this.updateAttributes({[propName]: e.currentTarget.value});
@@ -161,7 +133,7 @@ class Builder extends Component {
                 <Button {...{type:"submit", val:"cheking"}}/> */}
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
-                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}} key = {comp.id}  ><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
+                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName name = {comp.compType} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
                 })}
             </div>
         </section>

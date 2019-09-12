@@ -1,0 +1,91 @@
+.dashboard {
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+
+    &-header {
+        color: #fff;
+        padding: 15px;
+
+        h2>* {
+            float: right;
+
+            button {
+                color: #fff;
+            }
+        }
+    }
+
+    &-wrapper {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+.campaigns-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dashboard-heading {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #4d4d4d;
+}
+
+.campaigns {
+    flex: 0 1 calc(25% - 20px);
+    padding: 15px 15px 0;
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.2);
+
+    &-image {
+        max-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+        img {
+            margin: 15px;
+        }
+
+        .default {
+            opacity: 0.6;
+        }
+    }
+
+    &-footer {
+        font-size: 1.2rem;
+        color: #333;
+
+        h3 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        margin: 15px -15px 0;
+        justify-content: space-between;
+        background-color: #eaeaea;
+
+        a {
+            padding: 10px;
+            flex: 1 1 25%;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #fff;
+            text-align: center;
+
+            &:last-child {
+                border-right: 0;
+            }
+        }
+
+        img {
+            width: 20px;
+        }
+    }
+}

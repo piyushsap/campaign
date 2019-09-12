@@ -5,9 +5,9 @@ import { Input } from '../Components/';
 
 function Image(props) {
 
-    const [imageSrc, setImage] = useState([]);
+    const [imageSrc, setImage] = useState('');
     const divStyle = {
-        backgroundImage: 'url(' + imageSrc || '' + ')',
+        backgroundImage: 'url(' + props.imageSrc || imageSrc || '' + ')',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         width: '100%',
@@ -24,24 +24,31 @@ function Image(props) {
             reader.onload = function (e) {
 
                 setImage(e.target.result);
+                props.onChange(e, props);
             };
 
             reader.readAsDataURL(event.target.files[0]);
         }
     };
+    const imagePlaceHolder = (
+        <div className="image-placeholder">
+            <img alt="img-icon" src={imageIcon} width="30px" />
+            <span className="placeholder-txt">Add your image</span>
+            < Input {...{onChange: selectfile, label: 'Browse', class:'uploadBtn',name:'imageUpload',id:'imageupload',type: 'file',imageValid:'image/gif, image/jpeg, image/png'}}  />
+        </div>
+    );
+    // if(props.imageSrc) {
+    //     setImage(props.imageSrc);
+    // }
     return (
         <React.Fragment>
-            <div className="image-placeholder">
-                <img alt="img-icon" src={imageIcon} width="30px" />
-                <span className="placeholder-txt">Add your image</span>
-                < Input {...{label: 'Browse', class:'uploadBtn',name:'imageUpload',id:'imageupload',type: 'file',imageValid:'image/gif, image/jpeg, image/png'}}  />
-            </div>
+            { !props.imageSrc && !imageSrc && imagePlaceHolder}
             <div className="banner-image">
-                {props.backgroundImage ? (
+                {props.imageType === "Background" ? (
                     <div className="background-image" style={divStyle} ></div>
                 ) :
 
-                        <img alt="Image" src={imageSrc} />
+                        <img alt="Image" src={props.imageSrc || imageSrc} />
 
                 }
 
