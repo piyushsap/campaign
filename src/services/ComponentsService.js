@@ -3,14 +3,14 @@ class ComponentService {
         this.baseURL = baseURL;
     }
     async fetchComponents() {
-        // const response = await fetch(baseURL + 'components.json');
-        // const json = await response.json();
-        // return json || [];
+        const response = await fetch(baseURL + 'components1.json');
+        const json = await response.json();
+        return json || [];
         return [];
     }
 
     async postComponents(components) {
-        const response = await fetch(baseURL + 'components.json', {method: 'put', body: JSON.stringify(components)});
+        const response = await fetch(baseURL + 'components1.json', {method: 'put', body: JSON.stringify(components)});
         console.log(response)
     }
 

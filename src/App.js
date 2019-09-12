@@ -1,14 +1,19 @@
 import React from 'react';
 import './App.scss';
-import Sidebar from './Common/Sidebar';
 import Builder from './Common/Builder';
+import View from './Common/View';
+import { Route, BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Sidebar/>
-      <Builder/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <div className="main-wrapper">
+          <Route exact path="/" component={Builder} />
+          <Route path="/publish" component={View} />
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
