@@ -10,7 +10,7 @@ class Form extends Component {
     const newComponent = {
       id: new Date().getTime(),
       name: compType,
-      attributes: { label: "hello", style: {}}
+      attributes: { label: "Enter Label", style: {}}
     };
     this.props.comp.components.push(newComponent);
     // this.setState({components: this.props.comp.components});
