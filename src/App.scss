@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
 }
-
+body{
+  background-color: #F3F5F6;
+}
 .App {
   width: 100%;
   display: flex;
-  background-color: #F3F5F6;
 }
 
 header {
@@ -19,8 +20,12 @@ header h1 {
 }
 
 .sidebar {
-  width: 360px;
+  width: 200px;
   min-height: 100%;
+  border-right: 1px solid #ddd;
+  &.sidebar-right{
+    width: 300px;
+  }
 }
 
 .element-list {
@@ -51,10 +56,12 @@ header h1 {
     }
   }
 }
-
-.builder {
+.main-wrapper{
   flex: 1;
-  background: #fff;
+  display: flex;
+}
+.builder{
+  flex: 1;
   padding: 20px;
   h2 .form-button{
     float: right;
@@ -69,13 +76,11 @@ header h1 {
     border: 0;
   }
   &-wrapper {
+    background: #fff;
     border: dotted 1px #ddd;
     padding: 20px;
+    min-height: 80vh;
   }
-}
-
-.builder-wrapper>* {
-  // margin-bottom: 20px;
 }
 
 .row {
@@ -96,6 +101,10 @@ header h1 {
   box-shadow: 0 0 0 5px skyblue;
 }
 
+.component-container.hover, .component-container.select  {
+  box-shadow: 0 0 0 5px skyblue;
+}
+
 .accordion {
   &-item {
     h3 {
@@ -104,5 +113,22 @@ header h1 {
       padding: 10px 15px;
       border-bottom: 3px solid #A62858;
     }
+  }
+}
+.published{
+  &-header{
+    background-color: #fff;
+    padding: 20px;
+    h2{
+      display: inline-block;
+      margin:0;
+      font-size: 1.7rem;
+    }
+    a{
+      float: right;
+    }
+  }
+  &-wrapper{
+    padding: 15px;
   }
 }

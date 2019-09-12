@@ -5,15 +5,18 @@ import Propertyitem from './propertyItem';
 
 
 function Properties(props) {
-    console.log(element[props.element]);
-    let elems = element[props.element][0];
+    if(!props.component) {
+        return null;
+    }
+    let elems = element[props.component.name][0];
     return (
         <section className="properties">
         {
             Object.keys(elems).map((key) => {
                 const comp = elems[key];
                     comp.key = key;
-                return <Propertyitem key={key} {...{ element: comp }} />
+                    comp.default= elems['default']
+                return <Propertyitem {...props} key={key} {...{ element: comp }} />
             })}
         </section>
     );

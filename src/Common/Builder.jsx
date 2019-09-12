@@ -1,6 +1,9 @@
-import React, { useState, useEffect, Component }  from 'react';
+import React, { Component, Fragment }  from 'react';
 import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider} from '../Components/index';
 import componentService from './../services/ComponentsService';
+import { NavLink } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import SidebarRight from './SidebarRight';
 
 
 function ComponentWrapper(props) {
@@ -17,8 +20,18 @@ function ComponentWrapper(props) {
     compParent.current.classList.remove('hover');
   };
 
+  const handleClick = () => {
+    document.querySelectorAll('.component-container').forEach(ele => {
+      ele.classList.remove('select');
+    });
+    compParent.current.classList.add('select');
+
+    props.clickHandler();
+
+  };
+
   return (
-    <div ref={compParent} onDragOver = {(e) => handleDragOver(e)}
+    <div ref={compParent} onDragOver = {(e) => handleDragOver(e)} onClick = {handleClick}
     onDragEnter = {(e) => handleDragEnter(e)} 
     onDragLeave = {(e) => handleDragLeave(e)} 
     onDrop =  {(e) => handleDragLeave(e)} 
@@ -44,26 +57,24 @@ let selectedId = 0;
 let index = 1;
 class Builder extends Component {
   //const [components, setComponents] = useState([]);
-  state = {components: []};
+  state = {components: [], selectedComponent: null};
 
   // useEffect(_ => {
   //     componentService.postComponents(components);
   // }, [components.length]);
-  updateAttributes = (id, attributes) => {
-    const components = this.state.components;
-    const compIndex = components.findIndex(c => c.id === id);
-    if(compIndex > -1) {
-      const comp = components[compIndex];
+  updateAttributes = (attributes) => {
+      const components = this.state.components;
+      const comp = this.state.selectedComponent;
+      const compIndex = components.findIndex(c => c.id === comp.id);
       const updatedComp = {...comp};
       const updatedStyles = {...updatedComp.attributes.style, ...attributes.style};
       updatedComp.attributes = {...updatedComp.attributes, updatedStyles};
       updatedComp.attributes = {...updatedComp.attributes, ...attributes};
-      this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)]});
-    }
+      this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)], selectedComponent: updatedComp});
   }
 
   componentDidMount() {
-    componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
+    //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
     componentService.fetchComponents().then(response => {
       this.setState({components: response});
     });
@@ -77,11 +88,13 @@ class Builder extends Component {
     const components = this.state.components;
     const compType = e.dataTransfer.getData('text');
     const currentComponent = e.target.closest(".component-container");
-    selectedId = index;
+    const id = new Date().getTime();
+    selectedId = id;
     if(currentComponent) {
       const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
-      const newComponents = [...components.slice(0, componentIndex), 
-      {id: index++,
+      const newComponents = [...components.slice(0, componentIndex),
+      {
+        id,
         name: compType,
         attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
       },...components.slice(componentIndex)];
@@ -90,7 +103,7 @@ class Builder extends Component {
     }
     else {
       this.setState({components:[...components, {
-        id: index++,
+        id,
         name: compType,
         attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
       }]});
@@ -98,21 +111,47 @@ class Builder extends Component {
     componentService.notifyComponentChange({type: compType});
   };
 
+  onComponentClick = (comp) => {
+    this.setState({'selectedComponent': comp});
+    //selectedId = id;
+    //componentService.notifyComponentChange({type: compType});
+  }
+
+  onPropertyChange = (e, props) => {
+    const styleAttrs = {
+      lineHeight: 'lineHeight',
+      color: 'color'
+    };
+    const propName = props.element.key;
+    if(propName === 'lineHeight' || propName === 'color' ) {
+      this.updateAttributes({style: {[styleAttrs[propName]]: e.currentTarget.value}});
+    }
+    else {
+      this.updateAttributes({[propName]: e.currentTarget.value});
+     // componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})
+     //props.component.attributes = {...props.component.attributes, propName: e.currentTarget.value};
+    }
+  }
+
   render() {
     return (
-      <section className="builder">
-          <h2>Builder <Button {...{type:"button", val:"Publish",class:'publish'}}/></h2>
-          <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => this.handleDrop(e)}>
-              {/* <Text />
-              <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
-              <Button {...{type:"submit", val:"cheking"}}/> */}
-              {this.state.components.map(comp => {
-                const CompName = componentMap[comp.name];
-                return <ComponentWrapper><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
-              })}
-          </div>
-      </section>
+      <Fragment>
+        <Sidebar/>
+        <section className="builder">
+            <h2>Builder <NavLink to='/publish'><Button {...{type:"button", val:"Publish",class:'publish'}}/></NavLink></h2>
+            <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => this.handleDrop(e)}>
+                {/* <Text />
+                <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
+                <Button {...{type:"submit", val:"cheking"}}/> */}
+                {this.state.components.map(comp => {
+                  const CompName = componentMap[comp.name];
+                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}} key = {comp.id}  ><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
+                })}
+            </div>
+        </section>
+        <SidebarRight onPropertyChange = {this.onPropertyChange} component = {this.state.selectedComponent}/>
+      </Fragment>
     );
   }
 }

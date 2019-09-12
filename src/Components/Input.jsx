@@ -1,18 +1,6 @@
 import React from 'react';
-import componentService from './../services/ComponentsService';
-const styleAttrs = {
-  lineHeight: 'lineHeight',
-  textColor: 'color'
-}
 function Input(props) {
-  const onChange = function(e) {
-    if(props.name === 'lineHeight' ||props.name === 'textColor' ) {
-      componentService.notifyComponentEdit({style: {[styleAttrs[props.name]]: e.currentTarget.value}});
-    }
-    else {
-      componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})
-    }
-  }
+  
   return (
     <div className="form-input">
         { props.label ?(
@@ -22,10 +10,11 @@ function Input(props) {
             type={props.type || 'text'} 
             name={props.name || ''} 
             id={props.name || ''} 
+            value={props.value || ''}
             placeholder={props.placeholder || 'Enter your Text here'} 
             required={props.validate || false} 
             onBlur={props.handleBlur || null} 
-            onChange={e => onChange(e)} />
+            onChange={e => props.onChange && props.onChange(e, props)} />
     </div>
   );
 }
