@@ -55,8 +55,8 @@ class Builder extends Component {
       }
       else {
         const updatedStyles = {...updatedComp.attributes.style, ...attributes.style};
-        updatedComp.attributes = {...updatedComp.attributes, updatedStyles};
         updatedComp.attributes = {...updatedComp.attributes, ...attributes};
+        updatedComp.attributes = {...updatedComp.attributes, style: updatedStyles};
       }
       if(this.subComponent) {
         this.setState({selectedComponent: updatedComp});
@@ -134,6 +134,20 @@ class Builder extends Component {
     }
     else if(propName === 'image') {
       this.updateAttributes({'imageSrc': e.target.result});
+    }
+    else if(propName === 'style') {
+      const style = {'color': 'blue'};
+      try {
+        const style = JSON.parse(e.currentTarget.value);
+        debugger;
+        if(typeof style === "object") {
+          this.updateAttributes({style: style});
+        }
+      }
+      catch {
+
+      }
+      
     }
     else {
       this.updateAttributes({[propName]: e.currentTarget.value});
