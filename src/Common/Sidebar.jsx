@@ -7,7 +7,7 @@ import componentService from './../services/ComponentsService';
 
 
 function Sidebar() {
-    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row', 'Divider'];
+    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row', 'Divider', 'Form'];
     return (
         <section className="sidebar">
             <Header />

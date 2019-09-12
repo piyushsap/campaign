@@ -1,5 +1,5 @@
 import React, { Component, Fragment }  from 'react';
-import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider} from '../Components/index';
+import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider, Formcomp} from '../Components/index';
 import componentService from './../services/ComponentsService';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
@@ -51,6 +51,7 @@ export const componentMap = {
   Checkbox: Checkbox,
   RadioButton: RadioButton,
   Divider: Divider,
+  Form: Formcomp,
   Row: Row
 };
 let selectedId = 0;
@@ -108,13 +109,6 @@ class Builder extends Component {
       name: compType,
       attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
     };
-    // if(compType === 'Row') {
-    //   newComponent.attributes.cells = [{
-    //     'id': 0,
-    //     name: 'Cell',
-    //     attributes: {style: {}}
-    //   }];
-    // }
     if(currentComponent) {
       const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
       const newComponents = [...components.slice(0, componentIndex),
