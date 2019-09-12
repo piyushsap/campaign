@@ -1,0 +1,38 @@
+.image-placeholder {
+    width: 240px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background: #F3F5F6;
+
+}
+
+.image-placeholder img {
+    display: inline-block;
+}
+
+.image-placeholder .placeholder-txt {
+    font-size: 12px;
+    margin-bottom: 4px;
+    display: block;
+    color: #979894;
+}
+
+.form-input input[type='file'] {
+    display: none;
+}
+
+.form-input label {
+    color: #fff;
+    background-color: #898989;
+    border-color: #898989;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 2px 8px 4px;
+    border-radius: 5px;
+}
+
