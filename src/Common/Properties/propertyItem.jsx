@@ -1,6 +1,5 @@
 import React from 'react';
 import {Input, Select, Textarea} from '../../Components'
-import componentService from './../../services/ComponentsService';
 
 function Propertyitem(props) {
   const styleAttrs = {
