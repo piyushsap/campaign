@@ -96,7 +96,7 @@ class Builder extends Component {
     const newComponent = {
       id,
       name: compType,
-      attributes: {label: "hello"}
+      attributes: {label: "hello", style: {}}
     };
     
     if (compType === 'Form') {
