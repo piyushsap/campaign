@@ -70,7 +70,7 @@ header h1 {
   h2 .form-button{
     float: right;
   }
-  .form-input{
+  .form-input, .form-button{
     pointer-events: none;
   }
   .publish{
@@ -98,6 +98,25 @@ header h1 {
     padding: 20px;
     min-height: 80vh;
   }
+  .component-container {
+    position: relative;
+  
+    &.select .comp-close {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: url(./Assets/Images/cross.svg) no-repeat scroll 0 0 #fff;
+      top: -10px;
+      left: -10px;
+    }
+  }
+  .component-container.hover {
+    box-shadow: 0 0 0 5px skyblue;
+  }
+  
+  .component-container.hover, .component-container.select  {
+    box-shadow: 0 0 0 5px skyblue;
+  }
 }
 
 .row {
@@ -113,14 +132,6 @@ header h1 {
 
 .cell:not(:last-child) {
   border-right: dotted 1px #ddd;
-}
-
-.component-container.hover {
-  box-shadow: 0 0 0 5px skyblue;
-}
-
-.component-container.hover, .component-container.select  {
-  box-shadow: 0 0 0 5px skyblue;
 }
 
 .accordion {
@@ -161,18 +172,7 @@ header h1 {
   }
 }
 
-.component-container {
-  position: relative;
 
-  &.select .comp-close {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background: url(./Assets/Images/cross.svg) no-repeat scroll 0 0 #fff;
-    top: -10px;
-    left: -10px;
-  }
-}
 
 label {
   font-size: 14px;
