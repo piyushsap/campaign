@@ -3,6 +3,7 @@
 }
 body{
   background-color: #F3F5F6;
+  overflow: hidden;
 }
 .App {
   width: 100%;
@@ -17,15 +18,13 @@ header h1 {
   color: #fff;
   margin: 0;
   padding: 15px;
+  font-size: 1.7rem;
 }
 
 .sidebar {
-  width: 200px;
+  width: 251px;
   min-height: 100%;
   border-right: 1px solid #ddd;
-  &.sidebar-right{
-    width: 300px;
-  }
 }
 
 .element-list {
@@ -63,6 +62,8 @@ header h1 {
 .builder{
   flex: 1;
   padding: 20px;
+  overflow: auto;
+  max-height: 100vh;
   h2 .form-button{
     float: right;
   }
@@ -116,6 +117,7 @@ header h1 {
   }
 }
 .published{
+  width: 100%;
   &-header{
     background-color: #fff;
     padding: 20px;
