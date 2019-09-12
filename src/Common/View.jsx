@@ -11,16 +11,10 @@ class View extends Component {
         this.campaignID = this.props.match.params.id;
         //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
         componentService.fetchComponents(this.props.match.params.id).then(response => {
-            this.setState({ components: response });
+            this.setState({ layout: response });
+            console.log(this.state.layout)
         });
     }
-    componentWillMount() {
-        componentService.fetchComponents().then(response => {
-            this.setState({
-                layout: response
-            });
-        });
-    };
     render() {
         const componentMap = {
             Text: Text,
@@ -38,7 +32,7 @@ class View extends Component {
                 <header className="published-header">
                     <h2>Campaign builder</h2>
                     <NavLink to={'/create-campaign/' + this.campaignID}>
-                        <Button {...{ type: "button", val: "Go Back", class: 'btn-primary' }} />
+                        <Button {...{ type: "button", val: "Go Back", class: 'preview' }} />
                     </NavLink>
                 </header>
                 <section className="published-wrapper">

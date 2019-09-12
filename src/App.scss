@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+img{
+  max-width: 100%;
+}
 body{
   background-color: #F3F5F6;
   overflow: hidden;
@@ -67,9 +70,22 @@ header h1 {
   h2 .form-button{
     float: right;
   }
+  .form-input{
+    pointer-events: none;
+  }
   .publish{
     background-color: #A62858;
     color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    float: right;
+    border: 0;
+    margin-left: 15px;
+  }
+  .preview{
+    background-color: #fff;
+    color: #A62858;
     font-size: 14px;
     text-transform: uppercase;
     border-radius: 3px;
@@ -120,12 +136,21 @@ header h1 {
 .published{
   width: 100%;
   &-header{
-    background-color: #fff;
     padding: 20px;
     h2{
       display: inline-block;
       margin:0;
       font-size: 1.7rem;
+      color: #fff;
+    }
+    .preview{
+      background-color: #fff;
+      color: #A62858;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      float: right;
+      border: 0;
     }
     a{
       float: right;
@@ -155,4 +180,10 @@ label {
 
 .form-input {
   margin-bottom: 5px;
+}
+
+form{
+  padding: 15px;
+  min-height: 50px;
+  border: 1px solid #ddd;
 }
