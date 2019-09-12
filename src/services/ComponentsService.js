@@ -15,6 +15,18 @@ class ComponentService {
         const response = await fetch(baseURL + 'components1.json', {method: 'put', body: JSON.stringify(components)});
         console.log(response)
     }
+    async fetchCampaigns() {
+        const response = await fetch(baseURL + 'campaign.json');
+        const json = await response.json();
+        return json || [];
+        return [];
+    }
+
+    async postCampaign(campaign) {
+        const response = await fetch(baseURL + 'campaign.json', {method: 'post', body: JSON.stringify(campaign)});
+        const json = await response.json();
+        return json;
+    }
 
     notifyComponentChange(data) {
         this.componentSubscribers.forEach(fn => fn(data));

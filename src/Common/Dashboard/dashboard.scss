@@ -1,0 +1,78 @@
+.dashboard {
+    width: 100%;
+
+    &-header {
+        color: #fff;
+        padding: 15px;
+
+        h2>* {
+            float: right;
+
+            button {
+                color: #fff;
+            }
+        }
+    }
+
+    &-wrapper {
+        padding: 20px;
+    }
+}
+
+.campaigns-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.campaigns {
+    flex: 0 1 25%;
+    padding: 15px 15px 0;
+    background-color: #fff;
+    box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.2);
+
+    &-image {
+        max-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+        img {
+            margin: 15px;
+        }
+
+        .default {
+            opacity: 0.6;
+        }
+    }
+
+    &-footer {
+        font-size: 1.2rem;
+        color: #333;
+
+        h3 {
+            margin: 0;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        margin: 15px -15px 0;
+        justify-content: space-between;
+
+        a {
+            padding: 10px;
+            flex: 1 1 25%;
+            border-top: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            text-align: center;
+
+            &:last-child {
+                border-right: 0;
+            }
+        }
+
+        img {
+            width: 25px;
+        }
+    }
+}

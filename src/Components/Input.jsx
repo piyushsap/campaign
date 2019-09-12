@@ -6,7 +6,7 @@ function Input(props) {
         { props.label ?(
             <label>{props.label}</label>
         ):null}
-        <input 
+        <input className="form-control"
             type={props.type || 'text'} 
             name={props.name || ''} 
             id={props.name || ''} 
