@@ -7,8 +7,23 @@ function Propertyitem(props) {
     lineHeight: 'lineHeight',
     color: 'color'
   };
-    const onChange = function(e) {
-        props.onPropertyChange(e, props);
+    const onChange = function(event) {
+      if(props.element.inputType==='file') {
+        if (event.target.files && event.target.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+
+              //setImage(e.target.result);
+              props.onPropertyChange(e, props);
+          };
+
+          reader.readAsDataURL(event.target.files[0]);
+        }
+      }
+      else {
+        props.onPropertyChange(event, props);
+      }
     };
       const attrName = props.element.key;
       let value;

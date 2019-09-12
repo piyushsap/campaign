@@ -147,6 +147,9 @@ class Builder extends Component {
     else if(propName === 'columns') {
       this.updateAttributes(null, {type: 'Row', value: parseInt(e.currentTarget.value)});
     }
+    else if(propName === 'image') {
+      this.updateAttributes({'imageSrc': e.target.result});
+    }
     else {
       this.updateAttributes({[propName]: e.currentTarget.value});
      // componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})
