@@ -3,7 +3,7 @@ import {componentMap} from './../../../Common/Builder';
 import ComponentWrapper from '../../../Common/ComponentWrapper';
 
 class Cell extends Component {
-    state= {components: []};
+    //state= {components: []};
      handleDrop = (e) => {
         e.stopPropagation();
         const compType = e.dataTransfer.getData('text');
@@ -13,7 +13,7 @@ class Cell extends Component {
             attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
         };
        this.props.comp.components.push(newComponent);
-       this.setState({components: this.props.comp.components});
+      // this.setState({components: this.props.comp.components});
        this.forceUpdate();
        this.props.postRequest();
         //setChildren([...children,compType]);
@@ -25,7 +25,7 @@ class Cell extends Component {
     };
 
     render() {
-        const Components = this.state.components.map((child, index) => {
+        const Components = this.props.comp.components.map((child, index) => {
             const CompName = componentMap[child.name];
             return <ComponentWrapper key = {child.id} clickHandler = {e => {this.clickHandler(e, child)}}><CompName {...child.attributes}/></ComponentWrapper>
         });
