@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <div className="main-wrapper">
           <Route exact path="/create-campaign/:id" component={Builder} />
-          <Route path="/publish" component={View} />
+          <Route exact path="/publish/:id" component={View} />
           <Route exact path="/" component={Dashboard} />
         </div>
       </div>

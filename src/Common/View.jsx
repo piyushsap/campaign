@@ -7,6 +7,13 @@ class View extends Component {
     state = {
         layout: []
     };
+    componentDidMount() {
+        this.campaignID = this.props.match.params.id;
+        //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
+        componentService.fetchComponents(this.props.match.params.id).then(response => {
+            this.setState({ components: response });
+        });
+    }
     componentWillMount() {
         componentService.fetchComponents().then(response => {
             this.setState({
@@ -30,7 +37,7 @@ class View extends Component {
             <section className="published">
                 <header className="published-header">
                     <h2>Campaign builder</h2>
-                    <NavLink to='/'>
+                    <NavLink to={'/create-campaign/' + this.campaignID}>
                         <Button {...{ type: "button", val: "Go Back", class: 'btn-primary' }} />
                     </NavLink>
                 </header>

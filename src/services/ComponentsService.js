@@ -12,8 +12,8 @@ class ComponentService {
         return [];
     }
 
-    async postComponents(components) {
-        const response = await fetch(baseURL + 'components1.json', {method: 'put', body: JSON.stringify(components)});
+    async postComponents(components,query) {
+        const response = await fetch(baseURL + 'components1/'+query+'.json', {method: 'put', body: JSON.stringify(components)});
         console.log(response)
     }
     async fetchCampaigns() {
