@@ -6,7 +6,7 @@ export { default as Video } from "./Video";
 export { default as Checkbox } from "./Checkbox";
 export { default as RadioButton } from "./RadioButton";
 export { default as Divider } from "./pageDivider";
-export { default as Form } from "./Form";
+export { default as Formcomp } from "./Form";
 export { default as Row } from "./Row/Row";
 export { default as Cell } from "./Row/Cell/Cell";
 export { default as Select } from "./Select";
