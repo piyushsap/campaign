@@ -10,7 +10,7 @@ class Cell extends Component {
         const newComponent = {
             id: new Date().getTime(),
             name: compType,
-            attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
+            attributes: {label: "Enter Label", style: {}}
         };
        this.props.comp.components.push(newComponent);
       // this.setState({components: this.props.comp.components});
