@@ -30,6 +30,8 @@ function ComponentWrapper(props) {
       onDrop =  {(e) => handleDragLeave(e)} 
       className ="component-container">
         {props.children}
+
+        <span className="comp-close" onClick = {props.handleDelete}></span>
       </div>
     )
   };

@@ -4,7 +4,7 @@ function Text(props) {
   return (
     <div className="text-input " >
         <props.type contenteditable={props.contentedit || false} style = {props.style} onInput ={e => props.updateAttributes(props.id, {text : e.currentTarget.innerText})}>
-            {props.text || 'test'}
+            {props.text || 'Lorem ipsum dolor sit amet'}
         </props.type>
     </div>
   );
