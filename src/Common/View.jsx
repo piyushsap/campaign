@@ -11,16 +11,10 @@ class View extends Component {
         this.campaignID = this.props.match.params.id;
         //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
         componentService.fetchComponents(this.props.match.params.id).then(response => {
-            this.setState({ components: response });
+            this.setState({ layout: response });
+            console.log(this.state.layout)
         });
     }
-    componentWillMount() {
-        componentService.fetchComponents().then(response => {
-            this.setState({
-                layout: response
-            });
-        });
-    };
     render() {
         const componentMap = {
             Text: Text,
