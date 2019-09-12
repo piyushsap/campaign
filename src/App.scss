@@ -91,7 +91,8 @@ header h1 {
 }
 
 .cell {
-  flex: 1
+  flex: 1;
+  padding: 0 15px;
 }
 
 .cell:not(:last-child) {
@@ -133,4 +134,25 @@ header h1 {
   &-wrapper{
     padding: 15px;
   }
+}
+
+.component-container {
+  position: relative;
+
+  &.select .comp-close {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: url(./Assets/Images/cross.svg) no-repeat scroll 0 0 #fff;
+    top: -10px;
+    left: -10px;
+  }
+}
+
+label {
+  font-size: 14px;
+}
+
+.form-input {
+  margin-bottom: 5px;
 }

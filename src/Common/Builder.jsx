@@ -131,6 +131,15 @@ class Builder extends Component {
     this.setState({'selectedComponent': comp});
   }
 
+  deleteComponent = (comp)=> {
+    const components = this.state.components;
+    const indexOfComp = components.indexOf(comp);
+    debugger;
+    components.splice(indexOfComp,1);
+    this.setState({components});
+
+  }
+
   render() {
     return (
       <Fragment>
@@ -144,7 +153,7 @@ class Builder extends Component {
                 <Button {...{type:"submit", val:"cheking"}}/> */}
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
-                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest}/></ComponentWrapper>
+                  return <ComponentWrapper handleDelete = {_ => this.deleteComponent(comp)} clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest}/></ComponentWrapper>
                 })}
             </div>
         </section>
