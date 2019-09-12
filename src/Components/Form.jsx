@@ -10,7 +10,7 @@ class Form extends Component {
     const newComponent = {
       id: new Date().getTime(),
       name: compType,
-      attributes: { label: "hello", style: { 'fontWeight': 'bold' }, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs' }
+      attributes: { label: "hello", style: {}}
     };
     this.props.comp.components.push(newComponent);
     // this.setState({components: this.props.comp.components});
@@ -30,7 +30,7 @@ class Form extends Component {
       return <ComponentWrapper key={child.id} clickHandler={e => { this.clickHandler(e, child) }}><CompName {...child.attributes} /></ComponentWrapper>
     });
     return (
-      <form className={this.props.classNames} method={this.props.formMethod} action={this.props.formAction} onDrop onDragOver={(e) => e.preventDefault()}
+      <form className={this.props.classNames} method={this.props.formMethod || 'post'} action={this.props.formAction} onDrop onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => this.handleDrop(e)}>
          { Components.length ? Components  : 'Drag Components Here'}
       </form>
