@@ -5,14 +5,14 @@ import Properties from './Properties';
 import componentService from './../services/ComponentsService';
 
 
-function SidebarRight() {
+function SidebarRight(props) {
     const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Text', 'Image', 'Row', 'Divider'];
-    const [element, setElement] = useState('Row');
-    useEffect(_ => {
-        componentService.addComponentChangeSubscriber(data => {
-            setElement(data.type);
-        })
-    }, []);
+    // const [component, setComponent] = useState('Row');
+    // useEffect(_ => {
+    //     componentService.addComponentChangeSubscriber(data => {
+    //         setElement(data.type);
+    //     })
+    // }, []);
     return (
         <section className="sidebar sidebar-right">
             <Header />
@@ -23,7 +23,7 @@ function SidebarRight() {
                 </div> */}
                 <div className="accordion-item comp-properties">
                     <Text {...{ type: 'h3', text: 'Properties' }} />
-                    <Properties {...{ element }} />
+                    <Properties {...props} />
                 </div>
             </div>
         </section>

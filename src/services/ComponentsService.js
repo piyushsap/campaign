@@ -8,7 +8,7 @@ class ComponentService {
         const response = await fetch(baseURL + 'components1.json');
         const json = await response.json();
         return json || [];
-        return [];
+        //return [];
     }
 
     async postComponents(components) {

@@ -3,26 +3,47 @@ import {Input, Select} from '../../Components'
 import componentService from './../../services/ComponentsService';
 
 function Propertyitem(props) {
-    const styleAttrs = {
-        lineHeight: 'lineHeight',
-        color: 'color'
-      };
-    const onChange = function(e, props) {
-        if(props.name === 'lineHeight' ||props.name === 'color' ) {
-          componentService.notifyComponentEdit({style: {[styleAttrs[props.name]]: e.currentTarget.value}});
+  const styleAttrs = {
+    lineHeight: 'lineHeight',
+    color: 'color'
+  };
+    const onChange = function(event) {
+      if(props.element.inputType==='file') {
+        if (event.target.files && event.target.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+
+              //setImage(e.target.result);
+              props.onPropertyChange(e, props);
+          };
+
+          reader.readAsDataURL(event.target.files[0]);
         }
-        else {
-          componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})
-        }
+      }
+      else {
+        props.onPropertyChange(event, props);
+      }
+    };
+      const attrName = props.element.key;
+      let value;
+      if(styleAttrs[attrName]) {
+        value = props.component.attributes.style[attrName];
+      }
+      else if(attrName === 'columns') {
+        value = props.component.attributes.cells && props.component.attributes.cells.length + '';
+      }
+      else {
+        value = props.component.attributes[attrName];
       }
     return (
         <div className="properties-item">
             <label>{props.element.label}</label>
             {props.element.inputType==='select' ?(
-                <Select onChange = {onChange} {...{options:props.element.options,className:'check',name:props.element.key}} />
+                <Select value = {value} onChange = {onChange} {...{options:props.element.options,className:'check',name:props.element.key}} />
             ):null}
             {props.element.inputType==='color' || props.element.inputType==='text' || props.element.inputType==='file' ?(
-                <Input onChange = {onChange} {...{type:props.element.inputType, placeholder:'',name:props.element.key}} />
+                <Input  value = {value} onChange = {onChange} {...{type:props.element.inputType, placeholder:'',name:props.element.key}} />
             ):null}
         </div>
     );
