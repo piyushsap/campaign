@@ -22,7 +22,6 @@ function ComponentWrapper(props) {
       props.clickHandler(e);
   
     };
-  
     return (
       <div ref={compParent} onDragOver = {(e) => handleDragOver(e)} onClick = {handleClick}
       onDragEnter = {(e) => handleDragEnter(e)} 

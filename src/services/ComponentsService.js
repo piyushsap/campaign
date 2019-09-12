@@ -5,10 +5,10 @@ class ComponentService {
         this.componentEditSubscribers = [];
     }
     async fetchComponents(query) {
-        query = query || '';
-        const response = await fetch(baseURL + 'components1' + (query ? '/' + query : '') + '.json');
-        const json = await response.json();
-        return json || [];
+        // query = query || '';
+        // const response = await fetch(baseURL + 'components1' + (query ? '/' + query : '') + '.json');
+        // const json = await response.json();
+        // return json || [];
         return [];
     }
 

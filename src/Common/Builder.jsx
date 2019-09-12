@@ -29,10 +29,18 @@ class Builder extends Component {
   //     componentService.postComponents(components);
   // }, [components.length]);
   updateAttributes = (attributes, customObj) => {
+
       const components = this.state.components;
       const comp = this.state.selectedComponent;
+      let updatedComp;
       const compIndex = components.findIndex(c => c.id === comp.id);
-      const updatedComp = {...comp};
+      if(this.subComponent) {
+        updatedComp = comp;
+        //updatedComp.id =new Date().getTime();
+      }
+      else {
+        updatedComp = {...comp};
+      }
       if(customObj) {
         if(customObj.type === 'Row') {
           updatedComp.attributes.cells = [...Array(customObj.value)].map((item, index) => {
@@ -50,13 +58,17 @@ class Builder extends Component {
         updatedComp.attributes = {...updatedComp.attributes, updatedStyles};
         updatedComp.attributes = {...updatedComp.attributes, ...attributes};
       }
-      this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)], selectedComponent: updatedComp});
+      if(this.subComponent) {
+        this.setState({selectedComponent: updatedComp});
+      }
+      else {
+        this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)], selectedComponent: updatedComp});
+      }
   }
 
   componentDidMount() {
     this.campaignID = this.props.match.params.id;
     //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
-    debugger;
     componentService.fetchComponents(this.props.match.params.id).then(response => {
       this.setState({components: response});
     });
@@ -96,6 +108,7 @@ class Builder extends Component {
   };
 
   onComponentClick = (comp) => {
+    this.subComponent = false;
     this.setState({'selectedComponent': comp});
     //selectedId = id;
     //componentService.notifyComponentChange({type: compType});
@@ -128,6 +141,7 @@ class Builder extends Component {
   }
 
   setSelectedComponent = (comp) => {
+    this.subComponent = true;
     this.setState({'selectedComponent': comp});
   }
 
@@ -154,7 +168,7 @@ class Builder extends Component {
                 <Texteditor />
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
-                  return <ComponentWrapper handleDelete = {_ => this.deleteComponent(comp)} clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest}/></ComponentWrapper>
+                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}}  key = {comp.id}  ><CompName components = {this.state.components} name = {comp.compType} comp = {comp} onChange = {this.onComponentChange} {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes} postRequest= {this.postRequest} setSelectedComponent = {this.setSelectedComponent} /></ComponentWrapper>
                 })}
             </div>
         </section>
