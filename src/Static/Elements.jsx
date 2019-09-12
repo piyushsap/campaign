@@ -91,6 +91,22 @@ const element = {
             label: 'Label',
             inputType: 'text',
         }
+    }],
+    Select:[{
+        value:{
+            label: 'Label',
+            inputType: 'text',
+        },
+        options:{
+            label: 'Options',
+            inputType: 'text',
+        }
+    }],
+    Textarea:[{
+        label:{
+            label: 'Label',
+            inputType: 'text',
+        }
     }]
 }
 export default element;
