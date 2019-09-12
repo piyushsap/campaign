@@ -91,12 +91,13 @@ class Builder extends Component {
     const components = this.state.components;
     const compType = e.dataTransfer.getData('text');
     const currentComponent = e.target.closest(".component-container");
-    selectedId = index;
+    const id = new Date().getTime();
+    selectedId = id;
     if(currentComponent) {
       const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
       const newComponents = [...components.slice(0, componentIndex),
       {
-        id: index++,
+        id,
         name: compType,
         attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
       },...components.slice(componentIndex)];
@@ -105,7 +106,7 @@ class Builder extends Component {
     }
     else {
       this.setState({components:[...components, {
-        id: index++,
+        id,
         name: compType,
         attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
       }]});
