@@ -3,17 +3,8 @@ import {Input, Select} from '../../Components'
 import componentService from './../../services/ComponentsService';
 
 function Propertyitem(props) {
-    const styleAttrs = {
-        lineHeight: 'lineHeight',
-        color: 'color'
-      };
-    const onChange = function(e, props) {
-        if(props.name === 'lineHeight' ||props.name === 'color' ) {
-          componentService.notifyComponentEdit({style: {[styleAttrs[props.name]]: e.currentTarget.value}});
-        }
-        else {
-          componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})
-        }
+    const onChange = function(e) {
+        props.onPropertyChange(e, props);
       }
     return (
         <div className="properties-item">

@@ -25,7 +25,6 @@ function ComponentWrapper(props) {
       ele.classList.remove('select');
     });
     compParent.current.classList.add('select');
-    debugger;
 
     props.clickHandler();
 
@@ -58,26 +57,24 @@ let selectedId = 0;
 let index = 1;
 class Builder extends Component {
   //const [components, setComponents] = useState([]);
-  state = {components: []};
+  state = {components: [], selectedComponent: null};
 
   // useEffect(_ => {
   //     componentService.postComponents(components);
   // }, [components.length]);
-  updateAttributes = (id, attributes) => {
-    const components = this.state.components;
-    const compIndex = components.findIndex(c => c.id === id);
-    if (compIndex > -1) {
-      const comp = components[compIndex];
+  updateAttributes = (attributes) => {
+      const components = this.state.components;
+      const comp = this.state.selectedComponent;
+      const compIndex = components.findIndex(c => c.id === comp.id);
       const updatedComp = {...comp};
       const updatedStyles = {...updatedComp.attributes.style, ...attributes.style};
       updatedComp.attributes = {...updatedComp.attributes, updatedStyles};
       updatedComp.attributes = {...updatedComp.attributes, ...attributes};
       this.setState({components: [...components.slice(0, compIndex), updatedComp, ...components.slice(compIndex + 1)]});
-    }
   }
 
   componentDidMount() {
-    componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
+    //componentService.addComponentEditSubscriber((attributes) => this.updateAttributes(selectedId, attributes));
     componentService.fetchComponents().then(response => {
       this.setState({components: response});
     });
@@ -114,9 +111,26 @@ class Builder extends Component {
     componentService.notifyComponentChange({type: compType});
   };
 
-  onComponentClick = (id, compType) => {
-    selectedId = id;
-    componentService.notifyComponentChange({type: compType});
+  onComponentClick = (comp) => {
+    this.setState({'selectedComponent': comp});
+    //selectedId = id;
+    //componentService.notifyComponentChange({type: compType});
+  }
+
+  onPropertyChange = (e, props) => {
+    const styleAttrs = {
+      lineHeight: 'lineHeight',
+      color: 'color'
+    };
+    const propName = props.element.key;
+    if(propName === 'lineHeight' || propName === 'color' ) {
+      this.updateAttributes({style: {[styleAttrs[propName]]: e.currentTarget.value}});
+    }
+    else {
+      this.updateAttributes({[propName]: e.currentTarget.value});
+     // componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})
+     //props.component.attributes = {...props.component.attributes, propName: e.currentTarget.value};
+    }
   }
 
   render() {
@@ -132,11 +146,11 @@ class Builder extends Component {
                 <Button {...{type:"submit", val:"cheking"}}/> */}
                 {this.state.components.map(comp => {
                   const CompName = componentMap[comp.name];
-                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp.id, comp.name)}} key = {comp.id}  ><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
+                  return <ComponentWrapper clickHandler = {(e) => {this.onComponentClick(comp)}} key = {comp.id}  ><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
                 })}
             </div>
         </section>
-        <SidebarRight/>
+        <SidebarRight onPropertyChange = {this.onPropertyChange} component = {this.state.selectedComponent}/>
       </Fragment>
     );
   }

@@ -5,10 +5,10 @@ import Propertyitem from './propertyItem';
 
 
 function Properties(props) {
-    if(!element[props.element]) {
+    if(!props.component) {
         return null;
     }
-    let elems = element[props.element][0];
+    let elems = element[props.component.name][0];
     return (
         <section className="properties">
         {
@@ -16,7 +16,7 @@ function Properties(props) {
                 const comp = elems[key];
                     comp.key = key;
                     comp.default= elems['default']
-                return <Propertyitem key={key} {...{ element: comp }} />
+                return <Propertyitem {...props} key={key} {...{ element: comp }} />
             })}
         </section>
     );
