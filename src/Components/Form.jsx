@@ -21,7 +21,7 @@ class Form extends Component {
   clickHandler = (e, comp) => {
     e.stopPropagation();
     // props.comp.new ='test';
-    this.props.setSelectedComponent(comp);
+    this.props.setSelectedComponent && this.props.setSelectedComponent(comp);
   };
 
   render() {
