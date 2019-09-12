@@ -85,6 +85,12 @@ const element = {
             label: 'Video URL',
             inputType: 'text',
         }
+    }],
+    Button:[{
+        val:{
+            label: 'Label',
+            inputType: 'text',
+        }
     }]
 }
 export default element;
