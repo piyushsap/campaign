@@ -3,7 +3,7 @@ import React from 'react';
 function Textarea(props) {
     
     return (
-        <textarea placeholder={props.placeholder} className={props.rootClass}/>
+        <textarea placeholder={props.placeholder} name={props.name} id={props.name} className={props.rootClass}/>
     );
 }
 

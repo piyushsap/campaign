@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, Select} from '../../Components'
+import {Input, Select, Textarea} from '../../Components'
 import componentService from './../../services/ComponentsService';
 
 function Propertyitem(props) {
@@ -44,6 +44,9 @@ function Propertyitem(props) {
             ):null}
             {props.element.inputType==='color' || props.element.inputType==='text' || props.element.inputType==='file' ?(
                 <Input  value = {value} onChange = {onChange} {...{type:props.element.inputType, placeholder:'',name:props.element.key}} />
+            ):null}
+            {props.element.inputType==='textarea' ?(
+                <Textarea   value = {value} onChange = {onChange} {...{placeholder:'',name:props.element.key}}/>
             ):null}
         </div>
     );
