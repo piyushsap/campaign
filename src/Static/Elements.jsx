@@ -9,17 +9,22 @@ const element = {
             label: 'Heading',
             inputType: 'select',
         },
-        textColor:{
+        color:{
             label: 'Text Color',
             inputType: 'color',
         },
-        linkColor:{
-            label: 'Link Color',
-            inputType: 'color',
-        },
-        lineHeight:{
+        'line-height':{
             label:'Line height',
             inputType: 'text',
+        },
+        style:{
+            label:'Custom style',
+            inputType: 'textarea',
+        },
+        default:{
+            text: "hello", 
+            type: 'p', 
+            style:{'color': '#000','font-weight': '#000','line-height':1},
         }
     }],
     Image:[{

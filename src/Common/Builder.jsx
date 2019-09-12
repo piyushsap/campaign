@@ -1,6 +1,9 @@
-import React, { useState, useEffect, Component }  from 'react';
+import React, { Component, Fragment }  from 'react';
 import {Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider} from '../Components/index';
 import componentService from './../services/ComponentsService';
+import { NavLink } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import SidebarRight from './SidebarRight';
 
 
 function ComponentWrapper(props) {
@@ -18,11 +21,11 @@ function ComponentWrapper(props) {
   };
 
   return (
-    <div ref={compParent} onDragOver = {(e) => handleDragOver(e)}
-    onDragEnter = {(e) => handleDragEnter(e)} 
-    onDragLeave = {(e) => handleDragLeave(e)} 
-    onDrop =  {(e) => handleDragLeave(e)} 
-    className ="component-container">
+    <div ref={compParent} onDragOver={(e) => handleDragOver(e)}
+      onDragEnter={(e) => handleDragEnter(e)}
+      onDragLeave={(e) => handleDragLeave(e)}
+      onDrop={(e) => handleDragLeave(e)}
+      className="component-container">
       {props.children}
     </div>
   )
@@ -52,7 +55,7 @@ class Builder extends Component {
   updateAttributes = (id, attributes) => {
     const components = this.state.components;
     const compIndex = components.findIndex(c => c.id === id);
-    if(compIndex > -1) {
+    if (compIndex > -1) {
       const comp = components[compIndex];
       const updatedComp = {...comp};
       const updatedStyles = {...updatedComp.attributes.style, ...attributes.style};
@@ -80,8 +83,9 @@ class Builder extends Component {
     selectedId = index;
     if(currentComponent) {
       const componentIndex = [...document.querySelector('.builder-wrapper').children].indexOf(currentComponent) + 1;
-      const newComponents = [...components.slice(0, componentIndex), 
-      {id: index++,
+      const newComponents = [...components.slice(0, componentIndex),
+      {
+        id: index++,
         name: compType,
         attributes: {label: "hello", style: {'fontWeight': 'bold'}, 'src': 'https://m.media-amazon.com/images/S/aplus-media/mg/dbf4301f-af40-46f2-9a87-a99deddcd9a2._SL300__.jpg', 'videoUrl': 'https://www.youtube.com/embed/b_-dgO63ORs'}
       },...components.slice(componentIndex)];
@@ -100,19 +104,23 @@ class Builder extends Component {
 
   render() {
     return (
-      <section className="builder">
-          <h2>Builder <Button {...{type:"button", val:"Publish",class:'publish'}}/></h2>
-          <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => this.handleDrop(e)}>
-              {/* <Text />
-              <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
-              <Button {...{type:"submit", val:"cheking"}}/> */}
-              {this.state.components.map(comp => {
-                const CompName = componentMap[comp.name];
-                return <ComponentWrapper><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
-              })}
-          </div>
-      </section>
+      <Fragment>
+        <Sidebar/>
+        <section className="builder">
+            <h2>Builder <NavLink to='/publish'><Button {...{type:"button", val:"Publish",class:'publish'}}/></NavLink></h2>
+            <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => this.handleDrop(e)}>
+                {/* <Text />
+                <Input {...{ type: "text", placeHolder: "bonus", id: "bonus" }} />
+                <Button {...{type:"submit", val:"cheking"}}/> */}
+                {this.state.components.map(comp => {
+                  const CompName = componentMap[comp.name];
+                  return <ComponentWrapper><CompName {...comp.attributes} key = {comp.id} id = {comp.id} updateAttributes = {this.updateAttributes}/></ComponentWrapper>
+                })}
+            </div>
+        </section>
+        <SidebarRight/>
+      </Fragment>
     );
   }
 }
