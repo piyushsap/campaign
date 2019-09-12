@@ -27,6 +27,9 @@ function Propertyitem(props) {
     };
       const attrName = props.element.key;
       let value;
+      if(!props.component.attributes.style) {
+        props.component.attributes.style = {};
+      }
       if(styleAttrs[attrName]) {
         value = props.component.attributes.style[attrName];
       }
