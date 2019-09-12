@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import componentService from './../services/ComponentsService';
 import { NavLink } from 'react-router-dom';
-import { Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider } from '../Components/index';
+import { Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider,Textarea,Select } from '../Components/index';
 
 class View extends Component {
     state = {
@@ -25,7 +25,9 @@ class View extends Component {
             Checkbox: Checkbox,
             RadioButton: RadioButton,
             Divider: Divider,
-            Row: Row
+            Row: Row,
+            Select: Select,
+            Textarea: Textarea,
         };
         return (
             <section className="published">
