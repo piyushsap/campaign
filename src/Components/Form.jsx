@@ -37,6 +37,13 @@ class Form extends Component {
     componentService.submitForm(request, this.props.campaignID).then(res =>  { window.location.href = '/';});
   };
 
+  deleteComponent = (comp) => {
+    const components = this.props.comp.components;
+    const indexOfComp = components.indexOf(comp);
+    components.splice(indexOfComp, 1);
+    this.forceUpdate();
+};
+
 
   render() {
     if(!this.props.comp.components) {
@@ -44,7 +51,7 @@ class Form extends Component {
     }
     const Components = this.props.comp.components.map((child, index) => {
       const CompName = componentMap[child.name];
-      return <ComponentWrapper key={child.id} clickHandler={e => { this.clickHandler(e, child) }}><CompName {...child.attributes} /></ComponentWrapper>
+      return <ComponentWrapper key={child.id} clickHandler={e => { this.clickHandler(e, child) }} handleDelete = {_ => this.deleteComponent(child)}><CompName {...child.attributes} /></ComponentWrapper>
     });
     return (
       <form  onSubmit = {e => this.submitForm(e)} className={this.props.class} method={this.props.formMethod || 'post'} action={this.props.formAction} onDrop onDragOver={(e) => e.preventDefault()}

@@ -5,7 +5,7 @@ const element = {
             inputType: 'text',
         },
         type:{
-            options: ['h1','h2','h3','h4','h5','h6','p','label','span'],
+            options: ['p', 'h1','h2','h3','h4','h5','h6','label','span'],
             label: 'Heading',
             inputType: 'select',
         },
@@ -35,18 +35,13 @@ const element = {
         imageType:{
             label: 'Use image as',
             inputType: 'select',
-            options:['Background','Foreground']
+            options:['Foreground','Background']
         }
     }],
     PageDivider:[{
         color:{
             label: 'Bar Color',
             inputType: 'color',
-        },
-        imageType:{
-            label: 'Use image as',
-            inputType: 'select',
-            options:['Background','Foreground']
         }
     }],
     Row:[{
