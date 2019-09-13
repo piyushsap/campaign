@@ -67,6 +67,12 @@ header h1 {
   padding: 20px;
   overflow: auto;
   max-height: 100vh;
+  >h2>input {
+    border: none;
+    background: none;
+    border-bottom: solid 2px grey;
+    outline: none;
+  }
   h2 .form-button{
     float: right;
   }

@@ -31,6 +31,7 @@ class Builder extends Component {
   // useEffect(_ => {
   //     componentService.postComponents(components);
   // }, [components.length]);
+
   updateAttributes = (attributes, customObj) => {
 
     const components = this.state.components;
@@ -181,12 +182,20 @@ class Builder extends Component {
     window.location.href = '/';
   }
 
+  setCampaignName = (e) => {
+    let campaign = {
+      name: e.currentTarget.value,
+  }
+    componentService.updateCampaign(campaign, this.campaignID);
+  }
+
   render() {
     return (
       <Fragment>
         <Sidebar />
         <section className="builder">
-          <h2>Builder
+
+          <h2><input ref={this.campaignName} placeholder = "Enter Campaign name" onBlur = {e => this.setCampaignName(e)}/>
               <Button {...{ type: "button", val: "Publish", class: 'publish', handleClick: this.publishCampaign }} />
             <NavLink to={'/publish/' + this.campaignID}><Button {...{ type: "button", val: "Preview", class: 'preview' }} /></NavLink>
           </h2>

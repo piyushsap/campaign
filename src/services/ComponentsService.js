@@ -28,7 +28,10 @@ class ComponentService {
         const json = await response.json();
         return json;
     }
-
+    async updateCampaign(campaign,query) {
+        const response = await fetch(baseURL + 'campaign/'+query+'.json', {method: 'put', body: JSON.stringify(campaign)});
+        console.log(response)
+    }
     notifyComponentChange(data) {
         this.componentSubscribers.forEach(fn => fn(data));
     }
