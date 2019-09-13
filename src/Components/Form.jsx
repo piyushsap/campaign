@@ -46,6 +46,9 @@ class Form extends Component {
 
 
   render() {
+    if(!this.props.comp.components) {
+      this.props.comp.components = [];
+    }
     const Components = this.props.comp.components.map((child, index) => {
       const CompName = componentMap[child.name];
       return <ComponentWrapper key={child.id} clickHandler={e => { this.clickHandler(e, child) }} handleDelete = {_ => this.deleteComponent(child)}><CompName {...child.attributes} /></ComponentWrapper>
