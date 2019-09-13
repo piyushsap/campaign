@@ -30,7 +30,7 @@ class Form extends Component {
       return <ComponentWrapper key={child.id} clickHandler={e => { this.clickHandler(e, child) }}><CompName {...child.attributes} /></ComponentWrapper>
     });
     return (
-      <form className={this.props.classNames} method={this.props.formMethod || 'post'} action={this.props.formAction} onDrop onDragOver={(e) => e.preventDefault()}
+      <form className={this.props.class} method={this.props.formMethod || 'post'} action={this.props.formAction} onDrop onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => this.handleDrop(e)}>
          { Components.length ? Components  : 'Drag Components Here'}
       </form>
