@@ -125,6 +125,10 @@ const element = {
         class: {
             label: 'Class',
             inputType: 'text',
+        },
+        name:{
+            label: 'Input Name',
+            inputType: 'text',
         }
     }],
     Textarea:[{
