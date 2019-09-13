@@ -110,7 +110,7 @@ const element = {
         }
     }],
     Select:[{
-        value:{
+        label:{
             label: 'Label',
             inputType: 'text',
         },
