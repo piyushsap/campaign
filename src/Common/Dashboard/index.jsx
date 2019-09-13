@@ -34,8 +34,9 @@ class Dashboard extends Component {
                 <header className="dashboard-header">
                     <h2>
                         Campaign builder
-                        <Button {...{ type: "button", val: "New Campaign", class: 'default', handleClick: newcampaign }} />
+                        
                     </h2>
+                    <Button {...{ type: "button", val: "New Campaign", class: 'preview', handleClick: newcampaign }} />
                 </header>
                 <section className="dashboard-wrapper">
                     <h1 className="dashboard-heading">Saved Campaigns</h1>

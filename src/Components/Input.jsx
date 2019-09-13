@@ -3,7 +3,7 @@ function Input(props) {
   
   return (
     <div className="form-input">
-        { props.label || props.type==='file' ?(
+        { (props.label || props.type==='file') && props.type !=='checkbox' ?(
             <label for= {props.name} >{props.label || 'Browse'}</label>
         ):null}
         <input className="form-control"
@@ -17,6 +17,10 @@ function Input(props) {
             onBlur={props.handleBlur || null} 
             onChange={e => props.onChange && props.onChange(e, props)}
             accept={props.imageValid} />
+            
+        { props.label  && props.type ==='checkbox' ?(
+            <label for= {props.name} >{props.label}</label>
+        ):null}
     </div>
   );
 }
