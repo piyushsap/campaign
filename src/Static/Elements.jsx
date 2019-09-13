@@ -71,10 +71,14 @@ const element = {
             label: 'Enter Placeholder',
             inputType: 'text',
         },
+        class: {
+            label: 'Class',
+            inputType: 'text',
+        },
         type:{
             label: 'Input Type',
             inputType: 'select',
-            options:['text','checkbox']
+            options:['text','email','password','date','checkbox']
         }
     }],
     Video:[{
@@ -89,11 +93,19 @@ const element = {
         videoUrl: {
             label: 'Video URL',
             inputType: 'text',
+        },
+        class: {
+            label: 'Class',
+            inputType: 'text',
         }
     }],
     Button:[{
         val:{
             label: 'Label',
+            inputType: 'text',
+        },
+        class: {
+            label: 'Class',
             inputType: 'text',
         }
     }],
@@ -104,6 +116,10 @@ const element = {
         },
         options:{
             label: 'Options',
+            inputType: 'text',
+        },
+        class: {
+            label: 'Class',
             inputType: 'text',
         }
     }],
@@ -116,6 +132,10 @@ const element = {
     Form:[{
         formAction:{
             label: 'URL',
+            inputType: 'text',
+        },
+        class: {
+            label: 'Class',
             inputType: 'text',
         }
     }]

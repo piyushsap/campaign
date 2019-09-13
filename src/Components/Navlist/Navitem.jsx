@@ -7,6 +7,8 @@ import button from '../../Assets/Images/butotn.svg';
 import input from '../../Assets/Images/input.svg';
 import divider from '../../Assets/Images/divider.svg';
 import form from '../../Assets/Images/form.svg';
+import select from '../../Assets/Images/select.svg';
+import textarea from '../../Assets/Images/textarea.svg';
 
 
 
@@ -18,7 +20,9 @@ const imageMap = {
     Button:button,
     Input:input,
     Divider:divider,
-    Form: form
+    Form: form,
+    Select: select,
+    Textarea: textarea
 }
 function Navitem(props) {
     return (
