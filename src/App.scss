@@ -70,9 +70,6 @@ header h1 {
   h2 .form-button{
     float: right;
   }
-  .form-input, .form-button{
-    pointer-events: none;
-  }
   .publish{
     background-color: #A62858;
     color: #fff;
@@ -89,6 +86,9 @@ header h1 {
     border: dotted 1px #ddd;
     padding: 20px;
     min-height: 80vh;
+    .form-input, .form-button{
+      pointer-events: none;
+    }
   }
   .component-container {
     position: relative;

@@ -79,6 +79,10 @@ const element = {
             label: 'Input Type',
             inputType: 'select',
             options:['text','email','password','date','checkbox']
+        },
+        name:{
+            label: 'Input Name',
+            inputType: 'text',
         }
     }],
     Video:[{

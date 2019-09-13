@@ -27,7 +27,6 @@ class Cell extends Component {
     deleteComponent = (comp) => {
         const components = this.props.comp.components;
         const indexOfComp = components.indexOf(comp);
-        debugger;
         components.splice(indexOfComp, 1);
         this.forceUpdate();
     };

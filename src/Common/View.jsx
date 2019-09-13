@@ -43,7 +43,7 @@ class View extends Component {
                         this.state.layout.map(comp => {
                             const CompName = componentMap[comp.name];
                             return <Fragment>
-                                <CompName comp = {comp} {...comp.attributes} key={comp.id} id={comp.id} />
+                                <CompName campaignID = {this.campaignID} comp = {comp} {...comp.attributes} key={comp.id} id={comp.id} />
                             </Fragment>
                         })
                     }

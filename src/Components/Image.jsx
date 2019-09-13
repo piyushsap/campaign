@@ -42,7 +42,6 @@ function Image(props) {
             width: event.target.width,
             height: event.target.height
         }
-        debugger;
         setImageDimension(imageDim);
         console.log(imageDimension);
     };

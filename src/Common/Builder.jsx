@@ -148,7 +148,6 @@ class Builder extends Component {
       const style = { 'color': 'blue' };
       try {
         const style = JSON.parse(e.currentTarget.value);
-        debugger;
         if (typeof style === "object") {
           this.updateAttributes({ style: style });
         }
@@ -173,7 +172,6 @@ class Builder extends Component {
   deleteComponent = (comp) => {
     const components = this.state.components;
     const indexOfComp = components.indexOf(comp);
-    debugger;
     components.splice(indexOfComp, 1);
     this.setState({ components });
 
@@ -196,7 +194,7 @@ class Builder extends Component {
             <Texteditor />
             {this.state.components.map(comp => {
               const CompName = componentMap[comp.name];
-              return <ComponentWrapper clickHandler={(e) => { this.onComponentClick(comp) }} key={comp.id} handleDelete = {_ => this.deleteComponent(comp)}  ><CompName components={this.state.components} name={comp.compType} comp={comp} onChange={this.onComponentChange} {...comp.attributes} key={comp.id} id={comp.id} updateAttributes={this.updateAttributes} postRequest={this.postRequest} setSelectedComponent={this.setSelectedComponent} /></ComponentWrapper>
+              return <ComponentWrapper clickHandler={(e) => { this.onComponentClick(comp) }} key={comp.id} handleDelete = {_ => this.deleteComponent(comp)}  ><CompName components={this.state.components} name={comp.compType} comp={comp} onChange={this.onComponentChange} {...comp.attributes} key={comp.id} id={comp.id} updateAttributes={this.updateAttributes} postRequest={this.postRequest} setSelectedComponent={this.setSelectedComponent}  /></ComponentWrapper>
             })}
           </div>
         </section>
