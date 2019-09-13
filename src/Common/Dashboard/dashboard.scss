@@ -85,6 +85,21 @@
             border-top: 1px solid #fff;
             border-right: 1px solid #fff;
             text-align: center;
+            position: relative;
+
+            .count {
+                position: absolute;
+                background-color: #A62858;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                font-size: 12px;
+                line-height: 1.5;
+                top: 5px;
+                display: block;
+                right: 10px;
+                color: #fff;
+            }
 
             &:last-child {
                 border-right: 0;

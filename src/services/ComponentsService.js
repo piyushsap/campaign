@@ -28,7 +28,13 @@ class ComponentService {
         const json = await response.json();
         return json;
     }
-
+    async getForms() {
+        const response = await fetch(baseURL + 'forms.json');
+        const json = await response.json();
+        return json || [];
+        return [];
+    }
+    
     notifyComponentChange(data) {
         this.componentSubscribers.forEach(fn => fn(data));
     }
