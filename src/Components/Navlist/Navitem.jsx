@@ -22,7 +22,8 @@ const imageMap = {
     Divider:divider,
     Form: form,
     Select: select,
-    Textarea: textarea
+    Textarea: textarea,
+    Texteditor: text,
 }
 function Navitem(props) {
     return (

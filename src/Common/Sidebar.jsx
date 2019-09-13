@@ -5,7 +5,7 @@ import Navlist from '../Components/Navlist';
 
 
 function Sidebar() {
-    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Row', 'Divider', 'Form','Select','Textarea'];
+    const componentTypes = ['Text', 'Button', 'Input', 'Image', 'Video', 'Row', 'Divider', 'Form','Select','Textarea', 'Texteditor'];
     return (
         <section className="sidebar">
             <Header />

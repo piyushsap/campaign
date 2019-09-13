@@ -146,6 +146,12 @@ const element = {
             label: 'Class',
             inputType: 'text',
         }
-    }]
+    }],
+    Texteditor:[{
+        label:{
+            label: 'Label',
+            inputType: 'text',
+        }
+    }],
 }
 export default element;

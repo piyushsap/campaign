@@ -20,6 +20,7 @@ export const componentMap = {
   Row: Row,
   Select: Select,
   Textarea: Textarea,
+  Texteditor: Texteditor
 };
 let selectedId = 0;
 let index = 1;
@@ -94,7 +95,6 @@ class Builder extends Component {
     const currentComponent = e.target.closest(".component-container");
     const id = new Date().getTime();
     selectedId = id;
-    
     const newComponent = {
       id,
       name: compType,
