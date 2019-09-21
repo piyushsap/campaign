@@ -130,10 +130,11 @@ header h1 {
 .row {
   border: dotted 1px #ddd;
   min-height: 50px;
+  padding: 15px;
 }
 
 .cell {
-  padding: 0 15px;
+  padding: 15px;
 }
 
 .cell:not(:last-child) {

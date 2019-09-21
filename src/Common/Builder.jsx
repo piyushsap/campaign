@@ -145,12 +145,9 @@ class Builder extends Component {
       this.updateAttributes({ 'imageSrc': e.target.result });
     }
     else if (propName === 'style') {
-      const style = { 'color': 'blue' };
       try {
-        const style = JSON.parse(e.currentTarget.value);
-        if (typeof style === "object") {
-          this.updateAttributes({ style: style });
-        }
+        const style = this.styleToObject(e.currentTarget.value);
+        this.updateAttributes({ style: style });
       }
       catch {
 
@@ -178,7 +175,9 @@ class Builder extends Component {
   }
 
   publishCampaign = () => {
-    componentService.postHTML(document.querySelector('.builder-wrapper').innerHTML, this.campaignID);
+    componentService.postHTML(document.querySelector('.builder-wrapper').innerHTML, this.campaignID).then(_ => {
+      alert('changes published');
+    });
     this.postRequest();
     //window.location.href = '/';
   }
@@ -214,6 +213,19 @@ class Builder extends Component {
         <SidebarRight onPropertyChange={this.onPropertyChange} component={this.state.selectedComponent} />
       </Fragment>
     );
+  }
+
+  styleToObject = (style) => {
+    let styleObj = {};
+    const styles = style.split(';')
+    styles.forEach(style => {
+      const styleKeyValue = style.split(':');
+      if(styleKeyValue.length === 2) {
+        styleObj[styleKeyValue[0].trim()] = styleKeyValue[1].trim();
+      }
+    });
+    return styleObj;
+
   }
 }
 

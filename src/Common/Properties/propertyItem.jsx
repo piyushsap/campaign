@@ -6,6 +6,14 @@ function Propertyitem(props) {
     lineHeight: 'lineHeight',
     color: 'color'
   };
+  const objectToStyle = (obj) => {
+    let style = '';
+    for(let key in obj) {
+      style = style + key + ': ' + obj[key] + ';\n';
+    }
+    debugger;
+    return style;
+  }
     const onChange = function(event) {
       if(props.element.inputType==='file') {
         if (event.target.files && event.target.files[0]) {
@@ -48,7 +56,7 @@ function Propertyitem(props) {
                 <Input  value = {value} onChange = {onChange} {...{type:props.element.inputType, placeholder:'',name:props.element.key}} />
             ):null}
             {props.element.inputType==='textarea' ?(
-                <Textarea   value = {value} onChange = {onChange} {...{placeholder:'',name:props.element.key}}/>
+                <Textarea   value = {true ? objectToStyle(value) : value} onChange = {onChange} {...{placeholder:'',name:props.element.key}}/>
             ):null}
         </div>
     );
