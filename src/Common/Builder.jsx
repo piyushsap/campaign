@@ -178,8 +178,9 @@ class Builder extends Component {
   }
 
   publishCampaign = () => {
+    componentService.postHTML(document.querySelector('.builder-wrapper').innerHTML, this.campaignID);
     this.postRequest();
-    window.location.href = '/';
+    //window.location.href = '/';
   }
 
   setCampaignName = (e) => {
