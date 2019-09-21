@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function Textarea(props) {
-    
     return (
         <div className="form-input">
             { props.label ?(

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider, Texteditor, Formcomp,Select,Textarea } from '../Components/index';
+import { Input, Button, Text, Row, Image, Video, Checkbox, RadioButton, Divider, Texteditor, Formcomp, Select, Textarea } from '../Components/index';
 import componentService from './../services/ComponentsService';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
@@ -80,7 +80,7 @@ class Builder extends Component {
   }
 
   componentDidUpdate() {
-    this.postRequest();
+    //this.postRequest();
   }
 
   postRequest = () => {
@@ -91,18 +91,18 @@ class Builder extends Component {
   handleDrop = (e) => {
     const components = this.state.components;
     const compType = e.dataTransfer.getData('text');
-    
+
     const currentComponent = e.target.closest(".component-container");
     const id = new Date().getTime();
     selectedId = id;
     const newComponent = {
       id,
       name: compType,
-      attributes: {label: "Enter Label", style: {}}
+      attributes: { label: "Enter Label", style: {} }
     };
-    
+
     if (compType === 'Form') {
-      newComponent.components= [];
+      newComponent.components = [];
     }
 
     if (currentComponent) {
@@ -144,16 +144,16 @@ class Builder extends Component {
     else if (propName === 'image') {
       this.updateAttributes({ 'imageSrc': e.target.result });
     }
-    else if (propName === 'style') {
-      try {
-        const style = this.styleToObject(e.currentTarget.value);
-        this.updateAttributes({ style: style });
-      }
-      catch {
+    // else if (propName === 'customStyle') {
+    //   try {
+    //     const style = this.styleToObject(e.currentTarget.value);
+    //     style && this.updateAttributes({ customStyle: style });
+    //   }
+    //   catch {
 
-      }
+    //   }
 
-    }
+    // }
     else {
       this.updateAttributes({ [propName]: e.currentTarget.value });
       // componentService.notifyComponentEdit({[props.name] : e.currentTarget.value})
@@ -185,7 +185,7 @@ class Builder extends Component {
   setCampaignName = (e) => {
     let campaign = {
       name: e.currentTarget.value,
-  }
+    }
     componentService.updateCampaign(campaign, this.campaignID);
   }
 
@@ -195,8 +195,8 @@ class Builder extends Component {
         <Sidebar />
         <section className="builder">
 
-          <h2><input ref={this.campaignName} placeholder = "Enter Campaign name" onBlur = {e => this.setCampaignName(e)}/>
-              <Button {...{ type: "button", val: "Publish", class: 'publish', handleClick: this.publishCampaign }} />
+          <h2><input ref={this.campaignName} placeholder="Enter Campaign name" onBlur={e => this.setCampaignName(e)} />
+            <Button {...{ type: "button", val: "Publish", class: 'publish', handleClick: this.publishCampaign }} />
             <NavLink to={'/publish/' + this.campaignID}><Button {...{ type: "button", val: "Preview", class: 'preview' }} /></NavLink>
           </h2>
           <div className="builder-wrapper" onDragOver={(e) => e.preventDefault()}
@@ -206,26 +206,13 @@ class Builder extends Component {
                 <Button {...{type:"submit", val:"cheking"}}/> */}
             {this.state.components.map(comp => {
               const CompName = componentMap[comp.name];
-              return <ComponentWrapper clickHandler={(e) => { this.onComponentClick(comp) }} key={comp.id} handleDelete = {_ => this.deleteComponent(comp)}  ><CompName components={this.state.components} name={comp.compType} comp={comp} onChange={this.onComponentChange} {...comp.attributes} key={comp.id} id={comp.id} updateAttributes={this.updateAttributes} postRequest={this.postRequest} setSelectedComponent={this.setSelectedComponent}  /></ComponentWrapper>
+              return <ComponentWrapper clickHandler={(e) => { this.onComponentClick(comp) }} key={comp.id} handleDelete={_ => this.deleteComponent(comp)}  ><CompName components={this.state.components} name={comp.compType} comp={comp} onChange={this.onComponentChange} {...comp.attributes} key={comp.id} id={comp.id} updateAttributes={this.updateAttributes} postRequest={this.postRequest} setSelectedComponent={this.setSelectedComponent} /></ComponentWrapper>
             })}
           </div>
         </section>
         <SidebarRight onPropertyChange={this.onPropertyChange} component={this.state.selectedComponent} />
       </Fragment>
     );
-  }
-
-  styleToObject = (style) => {
-    let styleObj = {};
-    const styles = style.split(';')
-    styles.forEach(style => {
-      const styleKeyValue = style.split(':');
-      if(styleKeyValue.length === 2) {
-        styleObj[styleKeyValue[0].trim()] = styleKeyValue[1].trim();
-      }
-    });
-    return styleObj;
-
   }
 }
 

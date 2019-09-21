@@ -48,7 +48,7 @@ function Image(props) {
 
     const imagePlaceHolder = (
         <div className="image-placeholder">
-            <img alt="img-icon" src={imageIcon} width="30px" />
+            <img alt="img-icon" src={imageIcon} width="30px"/>
             <span className="placeholder-txt">Add your image</span>
             < Input {...{onChange: selectfile, label: 'Browse', class:'uploadBtn',name:'imageUpload',id:'imageupload',type: 'file',imageValid:'image/gif, image/jpeg, image/png'}}  />
         </div>
@@ -69,7 +69,7 @@ function Image(props) {
                     </React.Fragment>
                 ) :
 
-                        <img alt="Image" src={props.imageSrc || imageSrc} onLoad={getDimension} />
+                        <img style = {{"maxWidth": "100%"}} alt="Image" src={props.imageSrc || imageSrc} onLoad={getDimension} />
 
                 }
 

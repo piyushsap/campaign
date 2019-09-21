@@ -32,10 +32,10 @@ class Cell extends Component {
     };
 
     render() {
-        const Components = this.props.comp.components.map((child, index) => {
+        const Components = this.props.comp.components ? this.props.comp.components.map((child, index) => {
             const CompName = componentMap[child.name];
             return <ComponentWrapper key = {child.id} clickHandler = {e => {this.clickHandler(e, child)}} handleDelete = {_ => this.deleteComponent(child)}><CompName {...child.attributes}/></ComponentWrapper>
-        });
+        }) : [];
         let style = {flex: 1};
         if(this.props.style) {
             style = {...style, ...this.props.style};
