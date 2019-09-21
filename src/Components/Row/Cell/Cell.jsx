@@ -36,8 +36,12 @@ class Cell extends Component {
             const CompName = componentMap[child.name];
             return <ComponentWrapper key = {child.id} clickHandler = {e => {this.clickHandler(e, child)}} handleDelete = {_ => this.deleteComponent(child)}><CompName {...child.attributes}/></ComponentWrapper>
         });
+        let style = {flex: 1};
+        if(this.props.style) {
+            style = {...style, ...this.props.style};
+        }
         return (
-            <div className = "cell" onDragOver={(e) => e.preventDefault()}
+            <div  style = {style} className = "cell" onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => this.handleDrop(e)}>
                 { Components.length ? Components  : 'Drag Components Here'}
             </div>
