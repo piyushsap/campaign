@@ -11,16 +11,34 @@ import { NavLink } from 'react-router-dom';
 
 class Dashboard extends Component {
     state = {
-        campaigns: []
+        campaigns: '',
+        forms:'',
     }
-    componentWillMount() {
+    componentDidMount() {
         componentService.fetchCampaigns().then(response => {
             this.setState({
                 campaigns: response
             });
         });
+        componentService.getForms().then(response => {
+            console.log(response,122)
+            this.setState({
+                forms: response
+            });
+        });
+    };
+
+     getmessagecount = (campaignid) => {
+        let count = 0;
+        if(this.state.forms && campaignid)
+        {
+            count = this.state.forms[campaignid] && Object.keys(this.state.forms[campaignid]) && Object.keys(this.state.forms[campaignid]).length;
+        }
+        debugger;
+        return count || 0;
     };
     render() {
+        
         const newcampaign = () => {
             let campaign = {
                 name: 'Campaign 1',
@@ -38,14 +56,15 @@ class Dashboard extends Component {
                     </h2>
                     <Button {...{ type: "button", val: "New Campaign", class: 'preview', handleClick: newcampaign }} />
                 </header>
-                <section className="dashboard-wrapper">
+                {this.state.forms && this.state.campaigns && (
+                    <section className="dashboard-wrapper">
                     <h1 className="dashboard-heading">Saved Campaigns</h1>
 
                     <section className="campaigns-wrapper">
                     {
                         Object.keys(this.state.campaigns).map(campaign => {
                             let campaigns = this.state.campaigns[campaign];
-                            return <section className="campaigns">
+                            return <section key={campaign} className="campaigns">
                             <div className="campaigns-image">
                                 <img src={image} alt="campaign 1" className="default" />
                             </div>
@@ -54,7 +73,7 @@ class Dashboard extends Component {
                                 <div className="campaigns-actions">
                                     <NavLink to={'/create-campaign/'+campaign}><img src={edit} alt="edit" /></NavLink>                                    
                                     <NavLink to={'/publish/'+campaign}><img src={view} alt="View" /></NavLink>
-                                    <a href="#"><img src={mail} alt="Responses" /></a>
+                                    <a href="#"><img src={mail} alt="Responses" /><span className="count">{this.getmessagecount(campaign)}</span></a>
                                     <a href="#"><img src={settings} alt="Settings" /></a>
                                 </div>
                             </div>
@@ -63,6 +82,8 @@ class Dashboard extends Component {
                     }
                     </section>
                 </section>
+                )}
+                
             </section>
         );
     }
