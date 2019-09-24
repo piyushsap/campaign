@@ -12,7 +12,7 @@ function Text(props) {
 }
 
 Text.defaultProps = {
-  type: 'h1',
+  type: 'p',
 
 };
 

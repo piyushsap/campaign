@@ -118,6 +118,10 @@ const element = {
         class: {
             label: 'Class',
             inputType: 'text',
+        },
+        customStyle:{
+            label:'Custom style',
+            inputType: 'textarea',
         }
     }],
     Select:[{
