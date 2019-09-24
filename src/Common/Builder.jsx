@@ -51,8 +51,8 @@ class Builder extends Component {
           return {
             id: index,
             name: 'Cell',
-            attributes: { style: {} },
-            components: []
+            attributes: { style: {}, components: [] },
+           
           }
         });
       }
@@ -103,6 +103,14 @@ class Builder extends Component {
 
     if (compType === 'Form') {
       newComponent.components = [];
+    }
+    else if(compType === 'Row') {
+      newComponent.attributes.cells = [{
+        id: index,
+        name: 'Cell',
+        attributes: { style: {}, components: [] },
+        
+      }]
     }
 
     if (currentComponent) {

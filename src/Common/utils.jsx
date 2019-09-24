@@ -4,11 +4,12 @@ export const styleToObject = (style) => {
         const styles = style.split(';')
         for (let i = 0; i < styles.length; i++) {
             const style = styles[i];
-            const styleKeyValue = style.split(':');
-            if (styleKeyValue.length !== 2) {
-                continue;
+            const colonIndex= style.indexOf(':');
+            if(colonIndex > -1) {
+                const styleKey = style.substring(0, colonIndex);
+                const styleValue = style.substring(colonIndex + 1);
+                styleKey && styleValue && (styleObj[styleKey.trim()] = styleValue.trim());
             }
-            styleObj[styleKeyValue[0].trim()] = styleKeyValue[1].trim();
         }
     }
     return styleObj;

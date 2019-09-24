@@ -12,7 +12,7 @@ class Row extends Component {
         }
         return (
             <div className = 'row' style = {style}>
-                {this.props.cells && this.props.cells.map((item, index) => <Cell {...this.props}  key = {index} comp = {this.props.cells[index]}/>)}
+                {this.props.cells && this.props.cells.map((item, index) => <Cell   setSelectedComponent = {this.props.setSelectedComponent} key = {index} {...this.props.cells[index].attributes}/>)}
             </div>
         )
     }
