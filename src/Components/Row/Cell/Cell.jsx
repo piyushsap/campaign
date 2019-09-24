@@ -12,32 +12,35 @@ class Cell extends Component {
             name: compType,
             attributes: {label: "Enter Label", style: {}}
         };
-       this.props.comp.components.push(newComponent);
-      // this.setState({components: this.props.comp.components});
+       this.props.components.push(newComponent);
        this.forceUpdate();
-       this.props.postRequest();
+       //this.props.postRequest();
         //setChildren([...children,compType]);
     };
      clickHandler = (e, comp) => {
         e.stopPropagation();
-       // props.comp.new ='test';
+        debugger;
        this.props.setSelectedComponent && this.props.setSelectedComponent(comp);
     };
 
     deleteComponent = (comp) => {
-        const components = this.props.comp.components;
+        const components = this.props.components;
         const indexOfComp = components.indexOf(comp);
         components.splice(indexOfComp, 1);
         this.forceUpdate();
     };
 
     render() {
-        const Components = this.props.comp.components.map((child, index) => {
+        const Components = this.props.components ? this.props.components.map((child, index) => {
             const CompName = componentMap[child.name];
             return <ComponentWrapper key = {child.id} clickHandler = {e => {this.clickHandler(e, child)}} handleDelete = {_ => this.deleteComponent(child)}><CompName {...child.attributes}/></ComponentWrapper>
-        });
+        }) : [];
+        let style = {flex: 1};
+        if(this.props.style) {
+            style = {...style, ...this.props.style};
+        }
         return (
-            <div className = "cell" onDragOver={(e) => e.preventDefault()}
+            <div  style = {style} className = "cell" onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => this.handleDrop(e)}>
                 { Components.length ? Components  : 'Drag Components Here'}
             </div>

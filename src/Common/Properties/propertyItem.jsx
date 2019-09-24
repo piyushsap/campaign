@@ -48,7 +48,7 @@ function Propertyitem(props) {
                 <Input  value = {value} onChange = {onChange} {...{type:props.element.inputType, placeholder:'',name:props.element.key}} />
             ):null}
             {props.element.inputType==='textarea' ?(
-                <Textarea   value = {value} onChange = {onChange} {...{placeholder:'',name:props.element.key}}/>
+                <Textarea   value = {value || ''} onChange = {onChange} {...{placeholder:'',name:props.element.key}}/>
             ):null}
         </div>
     );

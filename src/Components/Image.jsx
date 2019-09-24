@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './image.scss';
 import imageIcon from '../Assets/Images/image.svg';
 import { Input } from '../Components/';
+import {styleToObject} from './../Common/utils';
 
 function Image(props) {
 
@@ -48,7 +49,7 @@ function Image(props) {
 
     const imagePlaceHolder = (
         <div className="image-placeholder">
-            <img alt="img-icon" src={imageIcon} width="30px" />
+            <img alt="img-icon" src={imageIcon} width="30px"/>
             <span className="placeholder-txt">Add your image</span>
             < Input {...{onChange: selectfile, label: 'Browse', class:'uploadBtn',name:'imageUpload',id:'imageupload',type: 'file',imageValid:'image/gif, image/jpeg, image/png'}}  />
         </div>
@@ -69,7 +70,7 @@ function Image(props) {
                     </React.Fragment>
                 ) :
 
-                        <img alt="Image" src={props.imageSrc || imageSrc} onLoad={getDimension} />
+                        <img style = {{"maxWidth": "100%", ...styleToObject(props.customStyle)}} alt="Image" src={props.imageSrc || imageSrc} onLoad={getDimension} />
 
                 }
 

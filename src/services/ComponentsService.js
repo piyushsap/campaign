@@ -62,6 +62,12 @@ class ComponentService {
         return json;
     }
 
+    async postHTML(html,query) {
+        const response = await fetch(baseURL + 'html/'+query+'.json', {method: 'put', body: JSON.stringify(html)});
+        const json = await response.json();
+        return json;
+    }
+
 
 }
 const baseURL = "https://campaignbuilder-cf2fa.firebaseio.com/";

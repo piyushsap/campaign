@@ -17,7 +17,7 @@ const element = {
             label:'Line height',
             inputType: 'text',
         },
-        style:{
+        customStyle:{
             label:'Custom style',
             inputType: 'textarea',
         },
@@ -35,8 +35,12 @@ const element = {
         imageType:{
             label: 'Use image as',
             inputType: 'select',
-            options:['Foreground','Background']
-        }
+            options:['Background','Foreground']
+        },
+        customStyle:{
+            label:'Custom style',
+            inputType: 'textarea',
+        },
     }],
     PageDivider:[{
         color:{
@@ -49,12 +53,20 @@ const element = {
             label: 'Choose Columns',
             inputType: 'select',
             options:['1','2','3','4']
+        },
+        customStyle:{
+            label:'Custom style',
+            inputType: 'textarea',
         }
     }],
     Cell:[{
         columns:{
             label: 'column width in %',
             inputType: 'text',
+        },
+        customStyle:{
+            label:'Custom style',
+            inputType: 'textarea',
         }
     }],
     Input:[{
