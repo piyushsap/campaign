@@ -36,7 +36,11 @@ const element = {
             label: 'Use image as',
             inputType: 'select',
             options:['Background','Foreground']
-        }
+        },
+        customStyle:{
+            label:'Custom style',
+            inputType: 'textarea',
+        },
     }],
     PageDivider:[{
         color:{

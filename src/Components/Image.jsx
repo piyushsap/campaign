@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './image.scss';
 import imageIcon from '../Assets/Images/image.svg';
 import { Input } from '../Components/';
+import {styleToObject} from './../Common/utils';
 
 function Image(props) {
 
@@ -69,7 +70,7 @@ function Image(props) {
                     </React.Fragment>
                 ) :
 
-                        <img style = {{"maxWidth": "100%"}} alt="Image" src={props.imageSrc || imageSrc} onLoad={getDimension} />
+                        <img style = {{"maxWidth": "100%", ...styleToObject(props.customStyle)}} alt="Image" src={props.imageSrc || imageSrc} onLoad={getDimension} />
 
                 }
 
