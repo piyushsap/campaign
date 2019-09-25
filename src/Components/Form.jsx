@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { componentMap } from '../Common/Builder';
 import ComponentWrapper from '../Common/ComponentWrapper';
 import componentService from './../services/ComponentsService';
+import {styleToObject} from './../Common/utils';
 
 class Form extends Component {
   //state= {components: []};
@@ -54,7 +55,7 @@ class Form extends Component {
       return <ComponentWrapper key={child.id} clickHandler={e => { this.clickHandler(e, child) }} handleDelete = {_ => this.deleteComponent(child)}><CompName {...child.attributes} /></ComponentWrapper>
     });
     return (
-      <form  onSubmit = {e => this.submitForm(e)} className={this.props.class} method={this.props.formMethod || 'post'} action={this.props.formAction} onDrop onDragOver={(e) => e.preventDefault()}
+      <form  style = {styleToObject(this.props.customStyle)} onSubmit = {e => this.submitForm(e)} className={this.props.class} method={this.props.formMethod || 'post'} action={this.props.formAction} onDrop onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => this.handleDrop(e)}>
          { Components.length ? Components  : 'Drag Components Here'}
       </form>
