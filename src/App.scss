@@ -115,6 +115,20 @@ header h1 {
   .component-container.hover, .component-container.select  {
     box-shadow: 0 0 0 5px skyblue;
   }
+
+  .row {
+    border: dotted 1px #ddd;
+    min-height: 50px;
+    padding: 15px;
+  }
+  
+  .cell {
+    padding: 15px;
+  }
+  
+  .cell:not(:last-child) {
+    border-right: dotted 1px #ddd;
+  }  
 }
 
 .preview{
@@ -125,20 +139,6 @@ header h1 {
   border-radius: 3px;
   float: right;
   border: 0;
-}
-
-.row {
-  border: dotted 1px #ddd;
-  min-height: 50px;
-  padding: 15px;
-}
-
-.cell {
-  padding: 15px;
-}
-
-.cell:not(:last-child) {
-  border-right: dotted 1px #ddd;
 }
 
 .accordion {
